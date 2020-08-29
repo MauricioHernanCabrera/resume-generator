@@ -398,9 +398,76 @@
               </v-row>
             </v-stepper-content>
 
+            <!-- skills -->
             <v-stepper-content step="4">
               <v-row>
-                <v-col cols="12" class="py-0">Skills</v-col>
+                <v-col cols="12" class="py-0">
+                  <v-expansion-panels multiple>
+                    <v-expansion-panel v-for="skill in form.skills" :key="skill.id">
+                      <v-expansion-panel-header>
+                        <v-row>
+                          <v-col cols="12" class="py-0 mb-2">
+                            <span
+                              class="d-block font-weight-bold"
+                            >{{ skill.name? skill.name : '(Not specified)' }}</span>
+                          </v-col>
+                          <v-col cols="12" class="py-0">
+                            <span
+                              class="d-inline-block font-weight-medium grey--text text--lighten-1"
+                            >{{ skill.category }}</span>
+                          </v-col>
+                        </v-row>
+                      </v-expansion-panel-header>
+
+                      <v-expansion-panel-content>
+                        <v-row>
+                          <v-col cols="12" sm="6" class="py-0">
+                            <v-text-field
+                              v-model="skill.name"
+                              label="Skill"
+                              placeholder="Javascript"
+                              filled
+                            />
+                          </v-col>
+
+                          <v-col cols="12" sm="6" class="py-0">
+                            <v-combobox
+                              v-model="skill.category"
+                              :items="categories"
+                              clearable
+                              filled
+                              label="Category"
+                              placeholder="Frontend"
+                            />
+                          </v-col>
+
+                          <v-col cols="12" class="py-0 d-flex">
+                            <v-spacer></v-spacer>
+                            <v-btn
+                              color="primary"
+                              text
+                              @click="deleteItem(form.skills, skill.id)"
+                            >Delete</v-btn>
+                            <v-spacer></v-spacer>
+                          </v-col>
+                        </v-row>
+                      </v-expansion-panel-content>
+                    </v-expansion-panel>
+                  </v-expansion-panels>
+                </v-col>
+
+                <v-col cols="12">
+                  <v-btn
+                    color="primary"
+                    text
+                    block
+                    class="d-flex justify-start"
+                    @click="addItem(form.skills)"
+                  >
+                    <v-icon class="mr-2">mdi-plus</v-icon>Add skill
+                  </v-btn>
+                </v-col>
+
                 <v-col cols="12" class="py-0">
                   <step-actions
                     :currentStep="currentStep"
@@ -459,6 +526,11 @@ const DEFAULT_EDUCATION = {
   city: '',
 }
 
+const DEFAULT_CATEGORY = {
+  name: '',
+  category: '',
+}
+
 export default {
   name: 'Home',
 
@@ -468,8 +540,8 @@ export default {
 
   data() {
     return {
-      currentStep: 2,
-      maxStep: 5,
+      currentStep: 4,
+      maxStep: 4,
       form: {
         firstName: '',
         lastName: '',
@@ -488,6 +560,12 @@ export default {
             ...DEFAULT_EDUCATION,
           },
         ],
+        skills: [
+          {
+            id: '1',
+            ...DEFAULT_CATEGORY,
+          },
+        ],
       },
       date: new Date().toISOString().substr(0, 10),
       menu: false,
@@ -495,10 +573,10 @@ export default {
         1: 'Personal Details',
         2: 'Experience',
         3: 'Education',
-        4: 'Projects',
-        5: 'Skills',
-        6: 'Open Source',
+        4: 'Skills',
       },
+      chips: null,
+      items: ['Streaming', 'Eating'],
     }
   },
 
@@ -507,6 +585,14 @@ export default {
       if (this.currentStep > val) {
         this.currentStep = val
       }
+    },
+  },
+
+  computed: {
+    categories() {
+      return this.form.skills
+        .map(({ category }) => category)
+        .filter((item) => !!item)
     },
   },
 
