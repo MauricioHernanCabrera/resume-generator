@@ -1,8 +1,22 @@
 <template>
   <div class="profile">
     <div class="profile__header">
-      <div class="profile__personal_details">profile__personal_details</div>
-      <div class="profile__contact">profile__contact</div>
+      <div class="profile__personal_details">
+        <h1
+          class="profile__fullname"
+        >{{ profile.personalDetails.firstName }} {{ profile.personalDetails.lastName }}</h1>
+        <p class="profile__job_title">{{ profile.personalDetails.jobTitle }}</p>
+      </div>
+      <div class="profile__contact">
+        <a
+          :href="`mailto:${profile.personalDetails.email}`"
+          class="profile__link"
+        >{{profile.personalDetails.email}}</a>
+        <a
+          :href="`tel:+${profile.personalDetails.phone}`"
+          class="profile__link"
+        >{{profile.personalDetails.phone }}</a>
+      </div>
     </div>
 
     <div class="profile__main">
@@ -34,10 +48,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$profile_divider_color: #d8d8d8;
-$profile_title_color: #2e2e2e;
-$profile_subtitle_color: #2e2e2e;
-$profile_text_color: #2e2e2e;
+$color_light: #d8d8d8;
+$color_dark: #2e2e2e;
+
+$profile_divider_color: $color_light;
+$profile_title_color: $color_dark;
+$profile_subtitle_color: $color_dark;
+$profile_text_color: $color_dark;
+$profile_fullname_color: $color_dark;
+$profile_job_title_color: $color_dark;
+$profile_link_color: $color_dark;
 
 $grid-bp: (
   sm: 600px,
@@ -52,14 +72,18 @@ $grid-bp: (
   }
 }
 
+p {
+  margin: 0;
+}
+
 .profile {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  padding-left: 64px;
+  padding-right: 64px;
 }
 
 .profile__title {
-  font-weight: 700;
-  font-size: 40px;
-  line-height: 40px;
-  color: $profile_title_color;
 }
 
 .profile__subtitle {
@@ -86,7 +110,33 @@ $grid-bp: (
 .profile__personal_details {
 }
 
+.profile__fullname {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 40px;
+  color: $profile_fullname_color;
+  margin-bottom: 12px;
+}
+
+.profile__job_title {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: $profile_job_title_color;
+}
+
 .profile__contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.profile__link {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: $profile_link_color;
+  text-decoration: none;
 }
 
 .profile__main {
