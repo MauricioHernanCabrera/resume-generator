@@ -11,17 +11,21 @@
         <a
           :href="`mailto:${profile.personalDetails.email}`"
           class="profile__link"
-        >{{profile.personalDetails.email}}</a>
+        >{{ profile.personalDetails.email }}</a>
         <a
           :href="`tel:+${profile.personalDetails.phone}`"
           class="profile__link"
-        >{{profile.personalDetails.phone }}</a>
+        >{{ profile.personalDetails.phone }}</a>
       </div>
     </div>
 
     <div class="profile__main">
       <div class="profile__pre">
-        <div class="profile__about">profile__about</div>
+        <div class="profile__about">
+          <h2 class="profile__title">About</h2>
+          <p class="profile__text">{{ profile.personalDetails.professionalSummary }}</p>
+        </div>
+
         <div class="profile__experience">profile__experience</div>
         <div class="profile__education">profile__education</div>
       </div>
@@ -50,6 +54,7 @@ export default {
 <style lang="scss" scoped>
 $color_light: #d8d8d8;
 $color_dark: #2e2e2e;
+$color_dark2: #000000;
 
 $profile_divider_color: $color_light;
 $profile_title_color: $color_dark;
@@ -58,6 +63,7 @@ $profile_text_color: $color_dark;
 $profile_fullname_color: $color_dark;
 $profile_job_title_color: $color_dark;
 $profile_link_color: $color_dark;
+$profile_title_border_color: $color_dark2;
 
 $grid-bp: (
   sm: 600px,
@@ -84,13 +90,26 @@ p {
 }
 
 .profile__title {
-}
-
-.profile__subtitle {
   font-weight: 500;
   font-size: 22px;
   line-height: 34px;
+  text-transform: uppercase;
   color: $profile_subtitle_color;
+  letter-spacing: 3px;
+  position: relative;
+  margin-bottom: 27px;
+
+  &:after {
+    margin-top: 8px;
+    width: 38px;
+    height: 4px;
+    content: '';
+    display: block;
+    background-color: $profile_title_border_color;
+  }
+}
+
+.profile__subtitle {
 }
 
 .profile__text {
@@ -145,19 +164,19 @@ p {
 }
 
 .profile__pre {
-  border-right: 2px solid $profile_divider_color;
+  border-right: 1px solid $profile_divider_color;
   padding-right: 38px;
   padding-top: 38px;
   padding-bottom: 38px;
 }
 
 .profile__about {
-  border-bottom: 2px solid $profile_divider_color;
+  border-bottom: 1px solid $profile_divider_color;
   padding-bottom: 38px;
 }
 
 .profile__experience {
-  border-bottom: 2px solid $profile_divider_color;
+  border-bottom: 1px solid $profile_divider_color;
   padding-top: 38px;
   padding-bottom: 38px;
 }
