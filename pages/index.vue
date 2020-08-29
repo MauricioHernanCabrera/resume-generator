@@ -369,6 +369,7 @@
             </v-row>
           </v-col>
 
+          <!-- links -->
           <v-col cols="12">
             <v-row>
               <v-col cols="12">
@@ -376,6 +377,74 @@
                 <p
                   class="text-subtitle-2 font-weight-normal grey--text text--lighten-1"
                 >You can add links to websites you want hiring managers to see! Perhaps It will be a link to your portfolio, LinkedIn profile, or personal website</p>
+              </v-col>
+            </v-row>
+
+            <v-row>
+              <v-col cols="12" class="py-0">
+                <v-expansion-panels inset>
+                  <v-expansion-panel v-for="link in form.links" :key="link.id">
+                    <v-expansion-panel-header>
+                      <v-row>
+                        <v-col cols="12" class="py-0 mb-2">
+                          <span
+                            class="d-block font-weight-bold"
+                          >{{ link.label? link.label : '(Not specified)' }}</span>
+                        </v-col>
+                        <v-col cols="12" class="py-0">
+                          <span
+                            class="text-subtitle-2 d-inline-block font-weight-normal grey--text text--lighten-1"
+                          >{{ link.link }}</span>
+                        </v-col>
+                      </v-row>
+                    </v-expansion-panel-header>
+
+                    <v-expansion-panel-content>
+                      <v-row>
+                        <v-col cols="12" sm="6" class="py-0">
+                          <v-text-field
+                            v-model="link.label"
+                            label="Label"
+                            placeholder="GitHub"
+                            filled
+                          />
+                        </v-col>
+
+                        <v-col cols="12" sm="6" class="py-0">
+                          <v-text-field
+                            v-model="link.link"
+                            label="Link"
+                            placeholder="https://github.com/mauriciohernancabrera"
+                            filled
+                          />
+                        </v-col>
+
+                        <v-col cols="12" class="py-0 d-flex">
+                          <v-spacer></v-spacer>
+                          <v-btn
+                            color="primary"
+                            text
+                            class="text-none font-weight-bold"
+                            @click="deleteItem(form.links, link.id)"
+                          >Delete</v-btn>
+                          <v-spacer></v-spacer>
+                        </v-col>
+                      </v-row>
+                    </v-expansion-panel-content>
+                  </v-expansion-panel>
+                </v-expansion-panels>
+              </v-col>
+
+              <v-col cols="12" class="pb-0">
+                <v-btn
+                  color="primary"
+                  text
+                  block
+                  class="d-flex justify-start text-none font-weight-bold"
+                  @click="addItem(form.links, DEFAULT_LINK)"
+                >
+                  <v-icon class="mr-2">mdi-plus</v-icon>Add link
+                </v-btn>
               </v-col>
             </v-row>
           </v-col>
@@ -494,6 +563,11 @@ const DEFAULT_EDUCATION = {
 const DEFAULT_SKILL = {
   name: '',
   category: '',
+}
+
+const DEFAULT_LINK = {
+  label: '',
+  link: '',
 }
 
 export default {
