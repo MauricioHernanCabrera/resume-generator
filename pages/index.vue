@@ -14,7 +14,7 @@
             <v-row>
               <v-col cols="12" sm="6" class="py-0">
                 <v-text-field
-                  v-model="form.jobTitle"
+                  v-model="form.personalDetails.jobTitle"
                   label="Job title"
                   placeholder="Software Engineer"
                   filled
@@ -100,7 +100,8 @@
                             class="text-subtitle-2 d-inline-block font-weight-normal grey--text text--lighten-1"
                           >
                             {{ job.startDate }}
-                            {{ job.startDate && job.endDate? '-' : '' }}
+                            {{ job.startDate && job.endDate? '—' : '' }}
+                            {{ job.startDate && !job.endDate? '— present' : '' }}
                             {{ job.endDate }}
                           </span>
                         </v-col>
@@ -249,7 +250,8 @@
                             class="text-subtitle-2 d-inline-block font-weight-normal grey--text text--lighten-1"
                           >
                             {{ education.startDate }}
-                            {{ education.startDate && education.endDate? '-' : '' }}
+                            {{ education.startDate && education.endDate? '—' : '' }}
+                            {{ education.startDate && !education.endDate? '— present' : '' }}
                             {{ education.endDate }}
                           </span>
                         </v-col>
@@ -530,77 +532,36 @@
         </v-row>
       </v-col>
 
-      <v-col cols="12" md="6">Preview</v-col>
+      <v-col cols="12" md="6">
+        <preview :profile="form" />
+      </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
 import { findIndex } from 'lodash'
-
-const DEFAULT_JOB = {
-  title: '',
-  url: '',
-  employer: '',
-  startDate: new Date().toISOString().substr(0, 7),
-  endDate: null,
-  startDateOpen: false,
-  endDateOpen: false,
-  city: '',
-  description: '',
-}
-
-const DEFAULT_EDUCATION = {
-  school: '',
-  degree: '',
-  startDate: new Date().toISOString().substr(0, 7),
-  endDate: null,
-  startDateOpen: false,
-  endDateOpen: false,
-  city: '',
-}
-
-const DEFAULT_SKILL = {
-  name: '',
-  category: '',
-}
-
-const DEFAULT_LINK = {
-  label: '',
-  link: '',
-}
+import Preview from '@/components/Preview'
+import { DEFAULT_LINK } from '@/const/link'
+import { DEFAULT_JOB } from '@/const/job'
+import { DEFAULT_EDUCATION } from '@/const/education'
+import { DEFAULT_SKILL } from '@/const/skill'
+import { DEFAULT_PROFILE, FAKE_PROFILE } from '@/const/profile'
 
 export default {
   name: 'Home',
+
+  components: {
+    Preview,
+  },
 
   data() {
     return {
       DEFAULT_JOB,
       DEFAULT_EDUCATION,
       DEFAULT_SKILL,
-      form: {
-        personalDetails: {
-          firstName: '',
-          lastName: '',
-          jobTitle: '',
-          phone: '',
-          email: '',
-        },
-        jobs: [],
-        educations: [],
-        skills: [],
-        links: [],
-      },
-      date: new Date().toISOString().substr(0, 10),
-      menu: false,
-      stepNames: {
-        1: 'Personal Details',
-        2: 'Experience',
-        3: 'Education',
-        4: 'Skills',
-      },
-      chips: null,
-      items: ['Streaming', 'Eating'],
+      DEFAULT_LINK,
+      form: DEFAULT_PROFILE,
     }
   },
 
