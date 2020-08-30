@@ -44,7 +44,30 @@
             </li>
           </ul>
         </div>
-        <div class="profile__education">profile__education</div>
+
+        <div class="profile__education">
+          <h3 class="profile__title">Education</h3>
+
+          <ul class="list_education">
+            <li
+              class="list_education__item"
+              v-for="education in profile.educations"
+              :key="education.id"
+            >
+              <h4 class="list_education__title">
+                {{ education.degree }}
+                {{ education.degree && education.school? ', ' : '' }}
+                {{ education.school }}
+                {{ education.school && education.city? ', ' : '' }}
+                {{ education.city }}
+              </h4>
+
+              <span
+                class="list_education__date"
+              >{{ education.startDate }} — {{ education.endDate? education.endDate : 'present' }}</span>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div class="profile__append">
@@ -221,39 +244,69 @@ p {
   list-style: none;
   padding: 0 !important;
   margin: 0 !important;
+}
 
-  .list_experience__item {
-    margin-bottom: 24px;
+.list_experience__item {
+  margin-bottom: 24px;
 
-    &:last-child {
-      margin-bottom: 0;
-    }
+  &:last-child {
+    margin-bottom: 0;
   }
+}
 
-  .list_experience__title {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    margin-bottom: 8px;
-  }
+.list_experience__title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 8px;
+}
 
-  .list_experience__link {
-    color: $list_experience_link_color;
-    text-decoration: none;
-  }
+.list_experience__link {
+  color: $list_experience_link_color !important;
+  text-decoration: none;
+}
 
-  .list_experience__date {
-    display: block;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 20px;
-    margin-bottom: 10px;
-  }
+.list_experience__date {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: 10px;
+}
 
-  .list_experience__description {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 21px;
+.list_experience__description {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+// list_education
+.list_education {
+  list-style: none;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.list_education__item {
+  margin-bottom: 24px;
+
+  &:last-child {
+    margin-bottom: 0;
   }
+}
+
+.list_education__title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 8px;
+}
+
+.list_education__date {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: 10px;
 }
 </style>
