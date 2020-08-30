@@ -2,9 +2,18 @@ $color_light: #d8d8d8;
 $color_dark: #2e2e2e;
 $color_dark2: #000000;
 
+// home
+$home_divider_color: $color_light;
+
+// app_bar
+$app_bar_border_color: $color_light;
+
+// profile
 $profile_divider_color: $color_light;
 $profile_link_color: $color_dark;
 $profile_title_border_color: $color_dark2;
+
+// list_experience
 $list_experience_link_color: $color_dark;
 
 $grid-bp: (
