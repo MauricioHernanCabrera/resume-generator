@@ -1,7 +1,8 @@
 <template>
-  <v-container fluid>
-    <v-row>
-      <v-col cols="12" md="6" class="py-0">
+  <v-container fluid class="home">
+    <v-row class="home__main_row">
+      <!-- <v-col cols="12" md="6" class="py-0 d-none"> -->
+      <v-col cols="12" md="6" class="py-0 home__col_form">
         <v-row class="px-15">
           <!-- personal_details -->
           <v-col cols="12">
@@ -532,7 +533,8 @@
         </v-row>
       </v-col>
 
-      <v-col cols="12" md="6">
+      <!-- <v-col cols="12" md="12"> -->
+      <v-col cols="12" md="6" class="py-0 home__col_preview">
         <preview :profile="form" />
       </v-col>
     </v-row>
@@ -561,7 +563,7 @@ export default {
       DEFAULT_EDUCATION,
       DEFAULT_SKILL,
       DEFAULT_LINK,
-      form: DEFAULT_PROFILE,
+      form: FAKE_PROFILE,
     }
   },
 
@@ -588,3 +590,21 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+@import './../assets/scss/utils.scss';
+
+.home {
+  padding: 0;
+}
+
+.home__main_row {
+}
+
+.home__col_form {
+  border-right: 2px solid $home_divider_color;
+}
+
+.home__col_preview {
+}
+</style>
