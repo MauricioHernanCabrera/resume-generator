@@ -2,13 +2,13 @@
   <v-container fluid class="home">
     <v-row class="home__main_row">
       <!-- <v-col cols="12" md="6" class="py-0 d-none"> -->
-      <v-col cols="12" lg="6" class="py-0 home__col_form">
-        <app-form :form="form" />
+      <v-col cols="12" lg="6" class="pa-0 home__col_form">
+        <app-form :form="form" class="mx-0" />
       </v-col>
 
       <!-- <v-col cols="12" md="12"> -->
-      <v-col cols="12" lg="6" class="py-0 home__col_preview">
-        <app-preview :profile="form" />
+      <v-col cols="12" lg="6" class="pa-0 home__col_preview">
+        <app-preview :profile="form" class="mx-0" />
       </v-col>
     </v-row>
   </v-container>

@@ -1,9 +1,9 @@
 <template>
-  <v-row class="px-15">
+  <v-row class="form">
     <!-- personal_details -->
-    <v-col cols="12">
+    <v-col cols="12" class="py-0 px-0">
       <v-row>
-        <v-col cols="12">
+        <v-col cols="12" class="pt-0">
           <h2 class="text-h6 font-weight-bold">Personal details</h2>
         </v-col>
       </v-row>
@@ -68,7 +68,7 @@
     </v-col>
 
     <!-- experience -->
-    <v-col cols="12">
+    <v-col cols="12" class="px-0">
       <v-row>
         <v-col cols="12">
           <h2 class="text-h6 font-weight-bold">Employment History</h2>
@@ -210,7 +210,7 @@
     </v-col>
 
     <!-- education -->
-    <v-col cols="12">
+    <v-col cols="12" class="px-0">
       <v-row>
         <v-col cols="12">
           <h2 class="text-h6 font-weight-bold">Education</h2>
@@ -351,7 +351,7 @@
     </v-col>
 
     <!-- links -->
-    <v-col cols="12">
+    <v-col cols="12" class="px-0">
       <v-row>
         <v-col cols="12">
           <h2 class="text-h6 font-weight-bold">Websites & Social Links</h2>
@@ -426,7 +426,7 @@
     </v-col>
 
     <!-- skills -->
-    <v-col cols="12">
+    <v-col cols="12" class="px-0">
       <v-row>
         <v-col cols="12">
           <h2 class="text-h6 font-weight-bold">Skills</h2>
@@ -557,4 +557,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import './../assets/scss/utils.scss';
+.form {
+  padding: 32px;
+
+  @include breakpoint(sm) {
+    padding: 48px 64px;
+  }
+}
 </style>

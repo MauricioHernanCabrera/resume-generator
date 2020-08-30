@@ -150,15 +150,11 @@ export default {
     margin: 0 !important;
   }
 
-  padding-top: 32px;
-  padding-bottom: 32px;
-  padding-left: 32px;
-  padding-right: 32px;
   color: $color_dark;
+  padding: 32px;
 
   @include breakpoint(sm) {
-    padding-left: 60px;
-    padding-right: 60px;
+    padding: 48px 64px;
   }
 
   .profile__title {
