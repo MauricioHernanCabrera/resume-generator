@@ -13,7 +13,7 @@
           class="profile__link"
         >{{ profile.personalDetails.email }}</a>
         <a
-          :href="`tel:+${profile.personalDetails.phone}`"
+          :href="`tel:${profile.personalDetails.phone}`"
           class="profile__link"
         >{{ profile.personalDetails.phone }}</a>
       </div>
@@ -36,9 +36,13 @@
                 <a :href="job.url" class="list_experience__link">{{ job.employer }}</a>
               </h4>
 
-              <span
-                class="list_experience__date"
-              >{{ job.startDate }} — {{ job.endDate? job.endDate : 'present' }}</span>
+              <span class="list_experience__date">
+                {{ job.startDate | monthYear }} —
+                <template
+                  v-if="job.endDate"
+                >{{ job.endDate | monthYear }}</template>
+                <template v-else>present</template>
+              </span>
 
               <p class="list_experience__description" v-html="nl2br(job.description)" />
             </li>
@@ -62,9 +66,13 @@
                 {{ education.city }}
               </h4>
 
-              <span
-                class="list_education__date"
-              >{{ education.startDate }} — {{ education.endDate? education.endDate : 'present' }}</span>
+              <span class="list_education__date">
+                {{ education.startDate | monthYear }} —
+                <template
+                  v-if="education.endDate"
+                >{{ education.endDate | monthYear }}</template>
+                <template v-else>present</template>
+              </span>
             </li>
           </ul>
         </div>
@@ -96,6 +104,7 @@
 
 <script>
 import arrayToObject from '@/helpers/arrayToObject'
+import { monthYear } from '@/helpers/moment'
 
 export default {
   name: 'Preview',
@@ -133,6 +142,10 @@ export default {
     nl2br(str) {
       return `${str.replace(/\n/g, '<br/>')}`
     },
+  },
+
+  filters: {
+    monthYear,
   },
 }
 </script>
