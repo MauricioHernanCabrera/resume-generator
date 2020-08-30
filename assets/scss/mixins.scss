@@ -1,0 +1,5 @@
+@mixin breakpoint($size) {
+  @media screen and (min-width: map-get($grid-bp, $size)) {
+    @content;
+  }
+}
