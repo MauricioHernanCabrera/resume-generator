@@ -1,8 +1,8 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col cols="12" md="6" class="py-0 d-none">
-        <!-- <v-col cols="12" md="6" class="py-0"> -->
+      <!-- <v-col cols="12" md="6" class="py-0 d-none"> -->
+      <v-col cols="12" md="6" class="py-0">
         <v-row class="px-15">
           <!-- personal_details -->
           <v-col cols="12">
@@ -533,8 +533,8 @@
         </v-row>
       </v-col>
 
-      <v-col cols="12" md="12">
-        <!-- <v-col cols="12" md="6"> -->
+      <!-- <v-col cols="12" md="12"> -->
+      <v-col cols="12" md="6">
         <preview :profile="form" />
       </v-col>
     </v-row>
