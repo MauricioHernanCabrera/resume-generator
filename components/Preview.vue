@@ -26,7 +26,24 @@
           <p class="profile__text">{{ profile.personalDetails.professionalSummary }}</p>
         </div>
 
-        <div class="profile__experience">profile__experience</div>
+        <div class="profile__experience">
+          <h3 class="profile__title">Experience</h3>
+
+          <ul class="list_experience">
+            <li class="list_experience__item" v-for="job in profile.jobs" :key="job.id">
+              <h4 class="list_experience__title">
+                {{ job.title }},
+                <a :href="job.url" class="list_experience__link">{{ job.employer }}</a>
+              </h4>
+
+              <span
+                class="list_experience__date"
+              >{{ job.startDate }} — {{ job.endDate? job.endDate : 'present' }}</span>
+
+              <p class="list_experience__description" v-html="nl2br(job.description)" />
+            </li>
+          </ul>
+        </div>
         <div class="profile__education">profile__education</div>
       </div>
 
@@ -48,22 +65,24 @@ export default {
       required: true,
     },
   },
+
+  methods: {
+    nl2br(str) {
+      return `${str.replace(/\n/g, '<br/>')}`
+    },
+  },
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $color_light: #d8d8d8;
 $color_dark: #2e2e2e;
 $color_dark2: #000000;
 
 $profile_divider_color: $color_light;
-$profile_title_color: $color_dark;
-$profile_subtitle_color: $color_dark;
-$profile_text_color: $color_dark;
-$profile_fullname_color: $color_dark;
-$profile_job_title_color: $color_dark;
 $profile_link_color: $color_dark;
 $profile_title_border_color: $color_dark2;
+$list_experience_link_color: $color_dark;
 
 $grid-bp: (
   sm: 600px,
@@ -78,8 +97,13 @@ $grid-bp: (
   }
 }
 
-p {
+* {
   margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0 !important;
 }
 
 .profile {
@@ -87,6 +111,7 @@ p {
   padding-bottom: 32px;
   padding-left: 64px;
   padding-right: 64px;
+  color: $color_dark;
 }
 
 .profile__title {
@@ -94,7 +119,6 @@ p {
   font-size: 22px;
   line-height: 34px;
   text-transform: uppercase;
-  color: $profile_subtitle_color;
   letter-spacing: 3px;
   position: relative;
   margin-bottom: 27px;
@@ -116,7 +140,6 @@ p {
   font-weight: 400;
   font-size: 14px;
   line-height: 21px;
-  color: $profile_text_color;
 }
 
 .profile__header {
@@ -133,7 +156,6 @@ p {
   font-weight: 700;
   font-size: 40px;
   line-height: 40px;
-  color: $profile_fullname_color;
   margin-bottom: 12px;
 }
 
@@ -141,7 +163,6 @@ p {
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
-  color: $profile_job_title_color;
 }
 
 .profile__contact {
@@ -194,5 +215,45 @@ p {
 }
 
 .profile__social_links {
+}
+
+.list_experience {
+  list-style: none;
+  padding: 0 !important;
+  margin: 0 !important;
+
+  .list_experience__item {
+    margin-bottom: 24px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .list_experience__title {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 8px;
+  }
+
+  .list_experience__link {
+    color: $list_experience_link_color;
+    text-decoration: none;
+  }
+
+  .list_experience__date {
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    margin-bottom: 10px;
+  }
+
+  .list_experience__description {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+  }
 }
 </style>
