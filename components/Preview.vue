@@ -157,7 +157,6 @@ export default {
         this.profile.personalDetails.jobTitle.length > 0,
         this.profile.personalDetails.professionalSummary.length > 0,
       ]
-      console.log(validations.every((item) => item))
       return validations.every((item) => item)
     },
 
@@ -177,8 +176,6 @@ export default {
             .map((skill) => skill.name),
         }
       })
-
-      console.log(skillCategories)
 
       return skillCategories
     },
@@ -276,7 +273,7 @@ export default {
 
   .profile__main {
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
   }
 
   .profile__pre {
@@ -429,6 +426,7 @@ export default {
     padding: 0;
     margin: 0;
     list-style: none;
+    word-wrap: break-word;
   }
 
   .list_contact__item {

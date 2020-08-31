@@ -1,23 +1,23 @@
-$color_light: #d8d8d8;
+$color_light: #fff;
+$color_light2: #d8d8d8;
 $color_dark: #2e2e2e;
 $color_dark2: #000000;
 
 // home
-$home_divider_color: $color_light;
+$home_divider_color: $color_light2;
 
 // app_bar
-$app_bar_border_color: $color_light;
+$app_bar_border_color: $color_light2;
 
 // profile
-$profile_divider_color: $color_light;
+$profile_divider_color: $color_light2;
 $profile_link_color: $color_dark;
 $profile_title_border_color: $color_dark2;
 
 // list_experience
 $list_experience_link_color: $color_dark;
 
-$grid-bp: (
-  sm: 600px,
+$grid-bp: (sm: 600px,
   md: 960px,
   lg: 1264px,
   xl: 1904px,

@@ -19,6 +19,8 @@
         <app-preview :profile="form" class="mx-0" />
       </v-col>
     </v-row>
+
+    <app-preview :profile="form" class="mx-0" id="profile" />
   </v-container>
 </template>
 
@@ -83,5 +85,14 @@ export default {
 }
 
 .home__col_preview {
+}
+
+#profile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $color_light;
+  width: 1200px;
+  z-index: -1;
 }
 </style>
