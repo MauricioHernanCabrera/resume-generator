@@ -1,101 +1,137 @@
 <template>
   <div class="profile">
-    <div class="profile__header">
-      <div class="profile__personal_details">
-        <h1
-          class="profile__fullname"
-        >{{ profile.personalDetails.firstName }} {{ profile.personalDetails.lastName }}</h1>
-        <p class="profile__job_title">{{ profile.personalDetails.jobTitle }}</p>
-      </div>
-      <div class="profile__contact">
-        <a
-          :href="`mailto:${profile.personalDetails.email}`"
-          class="profile__link"
-        >{{ profile.personalDetails.email }}</a>
-        <a
-          :href="`tel:+${profile.personalDetails.phone}`"
-          class="profile__link"
-        >{{ profile.personalDetails.phone }}</a>
-      </div>
-    </div>
+    <span class="profile__no_preview" v-if="!isValid">Invalid preview</span>
 
-    <div class="profile__main">
-      <div class="profile__pre">
-        <div class="profile__about">
-          <h2 class="profile__title">About</h2>
-          <p class="profile__text">{{ profile.personalDetails.professionalSummary }}</p>
+    <template v-else>
+      <div class="profile__header">
+        <div class="profile__personal_details">
+          <h1
+            class="profile__fullname"
+          >{{ profile.personalDetails.firstName }} {{ profile.personalDetails.lastName }}</h1>
+          <p class="profile__job_title">{{ profile.personalDetails.jobTitle }}</p>
         </div>
 
-        <div class="profile__experience">
-          <h3 class="profile__title">Experience</h3>
-
-          <ul class="list_experience">
-            <li class="list_experience__item" v-for="job in profile.jobs" :key="job.id">
-              <h4 class="list_experience__title">
-                {{ job.title }},
-                <a :href="job.url" class="list_experience__link">{{ job.employer }}</a>
-              </h4>
-
-              <span
-                class="list_experience__date"
-              >{{ job.startDate }} — {{ job.endDate? job.endDate : 'present' }}</span>
-
-              <p class="list_experience__description" v-html="nl2br(job.description)" />
-            </li>
-          </ul>
-        </div>
-
-        <div class="profile__education">
-          <h3 class="profile__title">Education</h3>
-
-          <ul class="list_education">
-            <li
-              class="list_education__item"
-              v-for="education in profile.educations"
-              :key="education.id"
-            >
-              <h4 class="list_education__title">
-                {{ education.degree }}
-                {{ education.degree && education.school? ', ' : '' }}
-                {{ education.school }}
-                {{ education.school && education.city? ', ' : '' }}
-                {{ education.city }}
-              </h4>
-
-              <span
-                class="list_education__date"
-              >{{ education.startDate }} — {{ education.endDate? education.endDate : 'present' }}</span>
-            </li>
-          </ul>
+        <div class="profile__contact">
+          <a
+            :href="`mailto:${profile.personalDetails.email}`"
+            class="profile__link"
+          >{{ profile.personalDetails.email }}</a>
+          <a
+            :href="`tel:${profile.personalDetails.phone}`"
+            class="profile__link"
+          >{{ profile.personalDetails.phone }}</a>
         </div>
       </div>
 
-      <div class="profile__append">
-        <div class="profile__skills">
-          <h3 class="profile__title">Skills</h3>
+      <div class="profile__main">
+        <div class="profile__pre">
+          <template v-if="profile.personalDetails.professionalSummary.length > 0">
+            <div class="profile__section profile__section--about">
+              <h2 class="profile__title">About</h2>
+              <p class="profile__text">{{ profile.personalDetails.professionalSummary }}</p>
+            </div>
+          </template>
 
-          <ul class="list_category">
-            <li class="list_category__item" v-for="category in categories" :key="category.name">
-              <h4 class="list_category__title">{{ category.name }}</h4>
+          <template v-if="profile.jobs.length > 0">
+            <div class="profile__section profile__section--experience">
+              <h3 class="profile__title">Experience</h3>
 
-              <ul class="list_skill">
-                <li
-                  class="list_skill__item"
-                  v-for="skill in category.skills"
-                  :key="`${category.name}_${skill}`"
-                >{{ skill }}</li>
+              <ul class="list_experience">
+                <li class="list_experience__item" v-for="job in profile.jobs" :key="job.id">
+                  <h4 class="list_experience__title">
+                    {{ job.title }},
+                    <a
+                      :href="job.url"
+                      class="list_experience__link"
+                    >{{ job.employer }}</a>
+                  </h4>
+
+                  <span class="list_experience__date">
+                    {{ job.startDate | monthYear }} —
+                    <template
+                      v-if="job.endDate"
+                    >{{ job.endDate | monthYear }}</template>
+                    <template v-else>present</template>
+                  </span>
+
+                  <p class="list_experience__description" v-html="nl2br(job.description)" />
+                </li>
               </ul>
-            </li>
-          </ul>
+            </div>
+          </template>
+
+          <template v-if="profile.educations.length > 0">
+            <div class="profile__section profile__section--education">
+              <h3 class="profile__title">Education</h3>
+
+              <ul class="list_education">
+                <li
+                  class="list_education__item"
+                  v-for="education in profile.educations"
+                  :key="education.id"
+                >
+                  <h4 class="list_education__title">
+                    {{ education.degree }}
+                    {{ education.degree && education.school? ', ' : '' }}
+                    {{ education.school }}
+                    {{ education.school && education.city? ', ' : '' }}
+                    {{ education.city }}
+                  </h4>
+
+                  <span class="list_education__date">
+                    {{ education.startDate | monthYear }} —
+                    <template
+                      v-if="education.endDate"
+                    >{{ education.endDate | monthYear }}</template>
+                    <template v-else>present</template>
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </template>
         </div>
-        <div class="profile__social_links">profile__social_links</div>
+
+        <div class="profile__append">
+          <template v-if="profile.skills.length > 0">
+            <div class="profile__section profile__section--skills">
+              <h3 class="profile__title">Skills</h3>
+
+              <ul class="list_category">
+                <li class="list_category__item" v-for="category in categories" :key="category.name">
+                  <h4 class="list_category__title">{{ category.name }}</h4>
+
+                  <ul class="list_skill">
+                    <li
+                      class="list_skill__item"
+                      v-for="skill in category.skills"
+                      :key="`${category.name}_${skill}`"
+                    >{{ skill }}</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </template>
+
+          <template v-if="profile.links.length > 0">
+            <div class="profile__section profile__section--social_links">
+              <h3 class="profile__title">Contact</h3>
+
+              <ul class="list_contact">
+                <li class="list_contact__item" v-for="link in profile.links" :key="link.id">
+                  <a :href="link.link" class="list_contact__link">{{ link.label }}</a>
+                </li>
+              </ul>
+            </div>
+          </template>
+        </div>
       </div>
-    </div>
+    </template>
   </div>
 </template>
 
 <script>
 import arrayToObject from '@/helpers/arrayToObject'
+import { monthYear } from '@/helpers/moment'
 
 export default {
   name: 'Preview',
@@ -107,7 +143,24 @@ export default {
     },
   },
 
+  methods: {
+    nl2br(str) {
+      return `${str.replace(/\n/g, '<br/>')}`
+    },
+  },
+
   computed: {
+    isValid() {
+      const validations = [
+        this.profile.personalDetails.firstName.length > 0,
+        this.profile.personalDetails.lastName.length > 0,
+        this.profile.personalDetails.jobTitle.length > 0,
+        this.profile.personalDetails.professionalSummary.length > 0,
+      ]
+      console.log(validations.every((item) => item))
+      return validations.every((item) => item)
+    },
+
     categories() {
       const { skills } = this.profile
 
@@ -125,14 +178,14 @@ export default {
         }
       })
 
+      console.log(skillCategories)
+
       return skillCategories
     },
   },
 
-  methods: {
-    nl2br(str) {
-      return `${str.replace(/\n/g, '<br/>')}`
-    },
+  filters: {
+    monthYear,
   },
 }
 </script>
@@ -188,8 +241,8 @@ export default {
   .profile__header {
     display: flex;
     justify-content: space-between;
-    border-bottom: 2px solid $profile_divider_color;
     padding-bottom: 38px;
+    border-bottom: 2px solid $profile_divider_color;
   }
 
   .profile__personal_details {
@@ -219,7 +272,6 @@ export default {
     font-weight: 400;
     line-height: 24px;
     color: $profile_link_color;
-    text-decoration: none;
   }
 
   .profile__main {
@@ -228,36 +280,45 @@ export default {
   }
 
   .profile__pre {
-    border-right: 1px solid $profile_divider_color;
     padding-right: 38px;
-    padding-top: 38px;
-    padding-bottom: 38px;
+    border-right: 1px solid $profile_divider_color;
   }
 
-  .profile__about {
+  .profile__section {
     border-bottom: 1px solid $profile_divider_color;
-    padding-bottom: 38px;
+
+    &:last-child {
+      border-bottom: 0;
+    }
   }
 
-  .profile__experience {
-    border-bottom: 1px solid $profile_divider_color;
+  .profile__section--about {
     padding-top: 38px;
     padding-bottom: 38px;
   }
 
-  .profile__education {
+  .profile__section--experience {
     padding-top: 38px;
+    padding-bottom: 38px;
+  }
+
+  .profile__section--education {
+    padding-top: 38px;
+    padding-bottom: 38px;
   }
 
   .profile__append {
-    padding-top: 38px;
     padding-left: 38px;
   }
 
-  .profile__skills {
+  .profile__section--skills {
+    padding-top: 38px;
+    padding-bottom: 38px;
   }
 
-  .profile__social_links {
+  .profile__section--social_links {
+    padding-top: 38px;
+    padding-bottom: 38px;
   }
 
   .list_experience {
@@ -283,7 +344,6 @@ export default {
 
   .list_experience__link {
     color: $list_experience_link_color;
-    text-decoration: none;
   }
 
   .list_experience__date {
@@ -362,6 +422,23 @@ export default {
     font-weight: 400;
     font-size: 14px;
     line-height: 21px;
+  }
+
+  // list_contact
+  .list_contact {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .list_contact__item {
+  }
+
+  .list_contact__link {
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 400;
+    color: $profile_link_color;
   }
 }
 </style>

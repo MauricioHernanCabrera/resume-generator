@@ -1,13 +1,21 @@
 <template>
   <v-container fluid class="home">
-    <v-row class="home__main_row">
-      <!-- <v-col cols="12" md="6" class="py-0 d-none"> -->
-      <v-col cols="12" lg="6" class="pa-0 home__col_form">
+    <v-row class="home__main_row" justify="center" v-if="!loading">
+      <v-col
+        v-show="$vuetify.breakpoint.lgAndUp || !previewOpen"
+        cols="12"
+        lg="6"
+        class="pa-0 home__col_form"
+      >
         <app-form :form="form" class="mx-0" />
       </v-col>
 
-      <!-- <v-col cols="12" md="12"> -->
-      <v-col cols="12" lg="6" class="pa-0 home__col_preview">
+      <v-col
+        v-show="$vuetify.breakpoint.lgAndUp || previewOpen"
+        cols="12"
+        lg="6"
+        class="pa-0 home__col_preview"
+      >
         <app-preview :profile="form" class="mx-0" />
       </v-col>
     </v-row>
@@ -18,6 +26,7 @@
 import AppPreview from '@/components/Preview'
 import AppForm from '@/components/Form'
 import { DEFAULT_PROFILE, FAKE_PROFILE } from '@/const/profile'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   name: 'Home',
@@ -29,8 +38,32 @@ export default {
 
   data() {
     return {
+      // form: DEFAULT_PROFILE,
       form: FAKE_PROFILE,
+      loading: true,
     }
+  },
+
+  mounted() {
+    this.loading = false
+  },
+
+  watch: {
+    '$vuetify.breakpoint.lgAndUp'(newValue, oldValue) {
+      if (newValue) {
+        this.SET_PREVIEW_OPEN(true)
+      } else {
+        this.SET_PREVIEW_OPEN(false)
+      }
+    },
+  },
+
+  computed: {
+    ...mapState(['previewOpen']),
+  },
+
+  methods: {
+    ...mapMutations(['SET_PREVIEW_OPEN']),
   },
 }
 </script>
@@ -46,7 +79,7 @@ export default {
 }
 
 .home__col_form {
-  border-right: 2px solid $home_divider_color;
+  border-right: 1px solid $home_divider_color;
 }
 
 .home__col_preview {

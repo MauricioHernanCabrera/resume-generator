@@ -172,7 +172,18 @@ const FAKE_PROFILE = {
       category: 'Operations',
     },
   ],
-  links: [],
+  links: [
+    {
+      id: '1',
+      label: 'GitHub',
+      link: 'https://github.com/bardiharborow',
+    },
+    {
+      id: '2',
+      label: 'LinkedIn',
+      link: 'https://www.linkedin.com/in/bardiharborow/',
+    },
+  ],
 }
 
 export { DEFAULT_PROFILE, FAKE_PROFILE }

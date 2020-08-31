@@ -41,8 +41,8 @@
         <v-col cols="12" sm="6" class="py-0">
           <v-text-field
             v-model="form.personalDetails.email"
-            label="Job title"
-            placeholder="Software Engineer"
+            label="Email"
+            placeholder="bardihardorow@gmail.com"
             filled
           />
         </v-col>
@@ -96,10 +96,12 @@
                     <span
                       class="text-subtitle-2 d-inline-block font-weight-normal grey--text text--lighten-1"
                     >
-                      {{ job.startDate }}
+                      <template v-if="job.startDate">{{ job.startDate | monthYear }}</template>
                       {{ job.startDate && job.endDate? '—' : '' }}
                       {{ job.startDate && !job.endDate? '— present' : '' }}
-                      {{ job.endDate }}
+                      <template
+                        v-if="job.endDate"
+                      >{{ job.endDate | monthYear }}</template>
                     </span>
                   </v-col>
                 </v-row>
@@ -237,10 +239,12 @@
                     <span
                       class="text-subtitle-2 d-inline-block font-weight-normal grey--text text--lighten-1"
                     >
-                      {{ education.startDate }}
+                      <template v-if="education.startDate">{{ education.startDate | monthYear }}</template>
                       {{ education.startDate && education.endDate? '—' : '' }}
                       {{ education.startDate && !education.endDate? '— present' : '' }}
-                      {{ education.endDate }}
+                      <template
+                        v-if="education.endDate"
+                      >{{ education.endDate | monthYear }}</template>
                     </span>
                   </v-col>
                 </v-row>
@@ -512,6 +516,7 @@ import { DEFAULT_LINK } from '@/const/link'
 import { DEFAULT_JOB } from '@/const/job'
 import { DEFAULT_EDUCATION } from '@/const/education'
 import { DEFAULT_SKILL } from '@/const/skill'
+import { monthYear } from '@/helpers/moment'
 
 export default {
   name: 'Form',
@@ -552,6 +557,10 @@ export default {
       const arrayIndex = findIndex(array, ['id', id])
       array.splice(arrayIndex, 1)
     },
+  },
+
+  filters: {
+    monthYear,
   },
 }
 </script>
