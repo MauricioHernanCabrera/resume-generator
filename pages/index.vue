@@ -38,6 +38,7 @@ export default {
 
   data() {
     return {
+      // form: DEFAULT_PROFILE,
       form: FAKE_PROFILE,
       loading: true,
     }
@@ -78,7 +79,7 @@ export default {
 }
 
 .home__col_form {
-  border-right: 2px solid $home_divider_color;
+  border-right: 1px solid $home_divider_color;
 }
 
 .home__col_preview {

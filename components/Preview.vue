@@ -19,12 +19,16 @@
       </div>
     </div>
 
+    <div class="divider"></div>
+
     <div class="profile__main">
       <div class="profile__pre">
         <div class="profile__about">
           <h2 class="profile__title">About</h2>
           <p class="profile__text">{{ profile.personalDetails.professionalSummary }}</p>
         </div>
+
+        <div class="divider divider--small"></div>
 
         <div class="profile__experience">
           <h3 class="profile__title">Experience</h3>
@@ -48,6 +52,8 @@
             </li>
           </ul>
         </div>
+
+        <div class="divider divider--small"></div>
 
         <div class="profile__education">
           <h3 class="profile__title">Education</h3>
@@ -78,6 +84,8 @@
         </div>
       </div>
 
+      <div class="divider divider--small divider--vertical"></div>
+
       <div class="profile__append">
         <div class="profile__skills">
           <h3 class="profile__title">Skills</h3>
@@ -96,7 +104,18 @@
             </li>
           </ul>
         </div>
-        <div class="profile__social_links">profile__social_links</div>
+
+        <div class="divider divider--small"></div>
+
+        <div class="profile__social_links">
+          <h3 class="profile__title">Contact</h3>
+
+          <ul class="list_contact">
+            <li class="list_contact__item" v-for="link in profile.links" :key="link.id">
+              <a :href="link.link" class="list_contact__link">{{ link.label }}</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -198,10 +217,30 @@ export default {
     line-height: 21px;
   }
 
+  .divider {
+    width: 100%;
+    height: 2px;
+    background-color: $profile_divider_color;
+  }
+
+  .divider--vertical {
+    width: 2px;
+    height: 100%;
+  }
+
+  .divider--small {
+    &.divider:not(.divider--vertical) {
+      height: 1px;
+    }
+
+    &.divider--vertical {
+      width: 1px;
+    }
+  }
+
   .profile__header {
     display: flex;
     justify-content: space-between;
-    border-bottom: 2px solid $profile_divider_color;
     padding-bottom: 38px;
   }
 
@@ -232,45 +271,44 @@ export default {
     font-weight: 400;
     line-height: 24px;
     color: $profile_link_color;
-    text-decoration: none;
   }
 
   .profile__main {
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 3fr auto 1fr;
   }
 
   .profile__pre {
-    border-right: 1px solid $profile_divider_color;
     padding-right: 38px;
+  }
+
+  .profile__about {
     padding-top: 38px;
     padding-bottom: 38px;
   }
 
-  .profile__about {
-    border-bottom: 1px solid $profile_divider_color;
-    padding-bottom: 38px;
-  }
-
   .profile__experience {
-    border-bottom: 1px solid $profile_divider_color;
     padding-top: 38px;
     padding-bottom: 38px;
   }
 
   .profile__education {
     padding-top: 38px;
+    padding-bottom: 38px;
   }
 
   .profile__append {
-    padding-top: 38px;
     padding-left: 38px;
   }
 
   .profile__skills {
+    padding-top: 38px;
+    padding-bottom: 38px;
   }
 
   .profile__social_links {
+    padding-top: 38px;
+    padding-bottom: 38px;
   }
 
   .list_experience {
@@ -296,7 +334,6 @@ export default {
 
   .list_experience__link {
     color: $list_experience_link_color;
-    text-decoration: none;
   }
 
   .list_experience__date {
@@ -375,6 +412,23 @@ export default {
     font-weight: 400;
     font-size: 14px;
     line-height: 21px;
+  }
+
+  // list_contact
+  .list_contact {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .list_contact__item {
+  }
+
+  .list_contact__link {
+    font-size: 14px;
+    line-height: 21px;
+    font-weight: 400;
+    color: $profile_link_color;
   }
 }
 </style>

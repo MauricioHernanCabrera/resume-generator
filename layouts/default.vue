@@ -8,6 +8,7 @@
           href="https://github.com/mauriciohernancabrera"
         >Mauricio Hernan Cabrera</a>
       </v-toolbar-title>
+
       <v-spacer></v-spacer>
 
       <v-btn
