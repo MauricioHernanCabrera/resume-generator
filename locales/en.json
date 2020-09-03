@@ -6,5 +6,32 @@
     "items": {
       "downloadImage": "Download image"
     }
+  },
+  "components": {
+    "form": {
+      "personalDetails": {
+        "title": "Personal details",
+        "jobTitle": {
+          "label": "Job title",
+          "placeholder": "Software Engineer"
+        },
+        "firstName": {
+          "label": "First name"
+        },
+        "lastName": {
+          "label": "Last name"
+        },
+        "email": {
+          "label": "Email"
+        },
+        "phone": {
+          "label": "Phone"
+        },
+        "professionalSummary": {
+          "label": "Professional Summary",
+          "placeholder": "I'm a full-stack developer, specialising in web platform and security. If you're a forward-thinking organisation that's supportive of diversity and great development practices, I'd love to hear from you!"
+        }
+      }
+    }
   }
 }

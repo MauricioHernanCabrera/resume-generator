@@ -4,7 +4,7 @@
     <v-col cols="12" class="py-0 px-0">
       <v-row>
         <v-col cols="12" class="pt-0">
-          <h2 class="text-h6 font-weight-bold">Personal details</h2>
+          <h2 class="text-h6 font-weight-bold">{{ $t('components.form.personalDetails.title') }}</h2>
         </v-col>
       </v-row>
 
@@ -12,8 +12,8 @@
         <v-col cols="12" sm="6" class="py-0">
           <v-text-field
             v-model="form.personalDetails.jobTitle"
-            label="Job title"
-            placeholder="Software Engineer"
+            :label="$t('components.form.personalDetails.jobTitle.label')"
+            :placeholder="$t('components.form.personalDetails.jobTitle.placeholder')"
             filled
           />
         </v-col>
@@ -23,7 +23,7 @@
         <v-col cols="12" sm="6" class="py-0">
           <v-text-field
             v-model="form.personalDetails.firstName"
-            label="First name"
+            :label="$t('components.form.personalDetails.firstName.label')"
             placeholder="Mauricio Hernan"
             filled
           />
@@ -32,7 +32,7 @@
         <v-col cols="12" sm="6" class="py-0">
           <v-text-field
             v-model="form.personalDetails.lastName"
-            label="Last name"
+            :label="$t('components.form.personalDetails.lastName.label')"
             placeholder="Cabrera"
             filled
           />
@@ -41,7 +41,7 @@
         <v-col cols="12" sm="6" class="py-0">
           <v-text-field
             v-model="form.personalDetails.email"
-            label="Email"
+            :label="$t('components.form.personalDetails.email.label')"
             placeholder="bardihardorow@gmail.com"
             filled
           />
@@ -50,7 +50,7 @@
         <v-col cols="12" sm="6" class="py-0">
           <v-text-field
             v-model="form.personalDetails.phone"
-            label="Phone"
+            :label="$t('components.form.personalDetails.phone.label')"
             placeholder="5493794883889"
             filled
           />
@@ -59,8 +59,8 @@
         <v-col cols="12" class="py-0">
           <v-textarea
             v-model="form.personalDetails.professionalSummary"
-            label="Professional Summary"
-            placeholder="I'm a full-stack developer, specialising in web platform and security. If you're a forward-thinking organisation that's supportive of diversity and great development practices, I'd love to hear from you!"
+            :label="$t('components.form.personalDetails.professionalSummary.label')"
+            :placeholder="$t('components.form.personalDetails.professionalSummary.placeholder')"
             filled
           />
         </v-col>

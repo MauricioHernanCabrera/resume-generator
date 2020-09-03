@@ -40,8 +40,8 @@ export default {
 
   data() {
     return {
-      // form: DEFAULT_PROFILE,
-      form: FAKE_PROFILE,
+      form: DEFAULT_PROFILE,
+      // form: FAKE_PROFILE,
       loading: true,
     }
   },
