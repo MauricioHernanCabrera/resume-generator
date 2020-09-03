@@ -1,0 +1,10 @@
+{
+  "layout": {
+    "by": "by",
+    "previewOpen": "Open preview",
+    "previewClose": "Close preview",
+    "items": {
+      "downloadImage": "Download image"
+    }
+  }
+}
