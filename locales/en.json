@@ -68,8 +68,30 @@
         }
       },
       "education": {
-        "title": "",
-        "subtitle": ""
+        "title": "Education",
+        "subtitle": "If relevant, include your most recent educational achievements and the dates here",
+        "deleteItem": "Delete education",
+        "addItem": "Add education",
+        "fields": {
+          "school": {
+            "label": "School",
+            "placeholder": "Monash University"
+          },
+          "degree": {
+            "label": "Degree",
+            "placeholder": "Bachelor of Science and Computer Science"
+          },
+          "startDate": {
+            "label": "Start date"
+          },
+          "endDate": {
+            "label": "End date"
+          },
+          "city": {
+            "label": "City",
+            "placeholder": "United State"
+          }
+        }
       }
     }
   }

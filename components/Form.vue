@@ -215,10 +215,10 @@
     <v-col cols="12" class="px-0">
       <v-row>
         <v-col cols="12">
-          <h2 class="text-h6 font-weight-bold">Education</h2>
+          <h2 class="text-h6 font-weight-bold">{{ $t('components.form.education.title') }}</h2>
           <p
             class="text-subtitle-2 font-weight-normal grey--text text--lighten-1"
-          >If relevant, include your most recent educational achievements and the dates here</p>
+          >{{ $t('components.form.education.subtitle') }}</p>
         </v-col>
       </v-row>
 
@@ -230,7 +230,7 @@
                 <v-row>
                   <v-col cols="12" class="py-0 mb-2">
                     <span class="d-block font-weight-bold">
-                      {{ education.degree? education.degree : '(Not specified)' }}
+                      {{ education.degree? education.degree : `(${$t('components.notSpecified')})` }}
                       {{ education.degree && education.school? ',' : '' }}
                       {{ education.school }}
                     </span>
@@ -241,7 +241,7 @@
                     >
                       <template v-if="education.startDate">{{ education.startDate | monthYear }}</template>
                       {{ education.startDate && education.endDate? '—' : '' }}
-                      {{ education.startDate && !education.endDate? '— present' : '' }}
+                      {{ education.startDate && !education.endDate? `— ${$t('shared.present')}` : '' }}
                       <template
                         v-if="education.endDate"
                       >{{ education.endDate | monthYear }}</template>
@@ -255,8 +255,8 @@
                   <v-col cols="12" sm="6" class="py-0">
                     <v-text-field
                       v-model="education.school"
-                      label="School"
-                      placeholder="Monash University"
+                      :label="$t('components.form.education.fields.school.label')"
+                      :placeholder="$t('components.form.education.fields.school.placeholder')"
                       filled
                     />
                   </v-col>
@@ -264,8 +264,8 @@
                   <v-col cols="12" sm="6" class="py-0">
                     <v-text-field
                       v-model="education.degree"
-                      label="Degree"
-                      placeholder="Bachelor of Science and Computer Science"
+                      :label="$t('components.form.education.fields.degree.label')"
+                      :placeholder="$t('components.form.education.fields.degree.placeholder')"
                       filled
                     />
                   </v-col>
@@ -279,7 +279,7 @@
                       <template v-slot:activator="{ on, attrs }">
                         <v-text-field
                           v-model="education.startDate"
-                          label="Start date"
+                          :label="$t('components.form.education.fields.startDate.label')"
                           readonly
                           filled
                           v-bind="attrs"
@@ -302,7 +302,7 @@
                         <v-text-field
                           clearable
                           v-model="education.endDate"
-                          label="End date"
+                          :label="$t('components.form.education.fields.endDate.label')"
                           placeholder="-"
                           readonly
                           filled
@@ -318,8 +318,8 @@
                   <v-col cols="12" sm="6" class="py-0">
                     <v-text-field
                       v-model="education.city"
-                      label="City"
-                      placeholder="United State"
+                      :label="$t('components.form.education.fields.city.label')"
+                      :placeholder="$t('components.form.education.fields.city.placeholder')"
                       filled
                     />
                   </v-col>
@@ -331,7 +331,7 @@
                       text
                       class="text-none font-weight-bold"
                       @click="deleteItem(form.educations, education.id)"
-                    >Delete</v-btn>
+                    >{{ $t('components.form.education.deleteItem') }}</v-btn>
                     <v-spacer></v-spacer>
                   </v-col>
                 </v-row>
@@ -348,7 +348,8 @@
             class="d-flex justify-start text-none font-weight-bold"
             @click="addItem(form.educations, DEFAULT_EDUCATION)"
           >
-            <v-icon class="mr-2">mdi-plus</v-icon>Add education
+            <v-icon class="mr-2">mdi-plus</v-icon>
+            {{ $t('components.form.education.addItem') }}
           </v-btn>
         </v-col>
       </v-row>
