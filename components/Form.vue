@@ -12,8 +12,8 @@
         <v-col cols="12" sm="6" class="py-0">
           <v-text-field
             v-model="form.personalDetails.jobTitle"
-            :label="$t('components.form.personalDetails.jobTitle.label')"
-            :placeholder="$t('components.form.personalDetails.jobTitle.placeholder')"
+            :label="$t('components.form.personalDetails.fields.jobTitle.label')"
+            :placeholder="$t('components.form.personalDetails.fields.jobTitle.placeholder')"
             filled
           />
         </v-col>
@@ -23,7 +23,7 @@
         <v-col cols="12" sm="6" class="py-0">
           <v-text-field
             v-model="form.personalDetails.firstName"
-            :label="$t('components.form.personalDetails.firstName.label')"
+            :label="$t('components.form.personalDetails.fields.firstName.label')"
             placeholder="Mauricio Hernan"
             filled
           />
@@ -32,7 +32,7 @@
         <v-col cols="12" sm="6" class="py-0">
           <v-text-field
             v-model="form.personalDetails.lastName"
-            :label="$t('components.form.personalDetails.lastName.label')"
+            :label="$t('components.form.personalDetails.fields.lastName.label')"
             placeholder="Cabrera"
             filled
           />
@@ -41,7 +41,7 @@
         <v-col cols="12" sm="6" class="py-0">
           <v-text-field
             v-model="form.personalDetails.email"
-            :label="$t('components.form.personalDetails.email.label')"
+            :label="$t('components.form.personalDetails.fields.email.label')"
             placeholder="bardihardorow@gmail.com"
             filled
           />
@@ -50,7 +50,7 @@
         <v-col cols="12" sm="6" class="py-0">
           <v-text-field
             v-model="form.personalDetails.phone"
-            :label="$t('components.form.personalDetails.phone.label')"
+            :label="$t('components.form.personalDetails.fields.phone.label')"
             placeholder="5493794883889"
             filled
           />
@@ -59,8 +59,8 @@
         <v-col cols="12" class="py-0">
           <v-textarea
             v-model="form.personalDetails.professionalSummary"
-            :label="$t('components.form.personalDetails.professionalSummary.label')"
-            :placeholder="$t('components.form.personalDetails.professionalSummary.placeholder')"
+            :label="$t('components.form.personalDetails.fields.professionalSummary.label')"
+            :placeholder="$t('components.form.personalDetails.fields.professionalSummary.placeholder')"
             filled
           />
         </v-col>
@@ -71,10 +71,10 @@
     <v-col cols="12" class="px-0">
       <v-row>
         <v-col cols="12">
-          <h2 class="text-h6 font-weight-bold">Employment History</h2>
+          <h2 class="text-h6 font-weight-bold">{{ $t('components.form.experience.title') }}</h2>
           <p
             class="text-subtitle-2 font-weight-normal grey--text text--lighten-1"
-          >Include your last 10 years of relevant experience and dates in this section. List your most recent position first.</p>
+          >{{ $t('components.form.experience.subtitle') }}</p>
         </v-col>
       </v-row>
 
@@ -86,8 +86,7 @@
                 <v-row>
                   <v-col cols="12" class="py-0 mb-2">
                     <span class="d-block font-weight-bold">
-                      {{ job.title? job.title : '(Not specified)' }}
-                      {{ job.title && job.employer? 'at' : '' }}
+                      {{ job.title? job.title : `(${$t('shared.notSpecified')})` }}{{ job.title && job.employer? ', ' : '' }}
                       {{ job.employer }}
                     </span>
                   </v-col>
@@ -98,7 +97,7 @@
                     >
                       <template v-if="job.startDate">{{ job.startDate | monthYear }}</template>
                       {{ job.startDate && job.endDate? '—' : '' }}
-                      {{ job.startDate && !job.endDate? '— present' : '' }}
+                      {{ job.startDate && !job.endDate? `— ${$t('shared.present')}` : '' }}
                       <template
                         v-if="job.endDate"
                       >{{ job.endDate | monthYear }}</template>
@@ -112,8 +111,8 @@
                   <v-col cols="12" sm="6" class="py-0">
                     <v-text-field
                       v-model="job.title"
-                      label="Job title"
-                      placeholder="Core Developer"
+                      :label="$t('components.form.experience.fields.title.label')"
+                      :placeholder="$t('components.form.experience.fields.title.placeholder')"
                       filled
                     />
                   </v-col>
@@ -121,8 +120,8 @@
                   <v-col cols="12" sm="6" class="py-0">
                     <v-text-field
                       v-model="job.employer"
-                      label="Employer"
-                      placeholder="Bootstrap"
+                      :label="$t('components.form.experience.fields.employer.label')"
+                      :placeholder="$t('components.form.experience.fields.employer.placeholder')"
                       filled
                     />
                   </v-col>
@@ -132,7 +131,7 @@
                       <template v-slot:activator="{ on, attrs }">
                         <v-text-field
                           v-model="job.startDate"
-                          label="Start date"
+                          :label="$t('components.form.experience.fields.startDate.label')"
                           readonly
                           filled
                           v-bind="attrs"
@@ -150,7 +149,7 @@
                         <v-text-field
                           clearable
                           v-model="job.endDate"
-                          label="End date"
+                          :label="$t('components.form.experience.fields.endDate.label')"
                           placeholder="-"
                           readonly
                           filled
@@ -166,7 +165,7 @@
                   <v-col cols="12" sm="6" class="py-0">
                     <v-text-field
                       v-model="job.url"
-                      label="Employer url"
+                      :label="$t('components.form.experience.fields.url.label')"
                       placeholder="https://bootstrap.com"
                       filled
                     />
@@ -175,8 +174,8 @@
                   <v-col cols="12" class="py-0">
                     <v-textarea
                       v-model="job.description"
-                      label="Description"
-                      placeholder="Bootstrap is the most popular web framework in the world, emphasizing accessibility for design-oriented staff and reliability across browsers."
+                      :label="$t('components.form.experience.fields.description.label')"
+                      :placeholder="$t('components.form.experience.fields.description.placeholder')"
                       filled
                     />
                   </v-col>
@@ -188,7 +187,7 @@
                       text
                       class="text-none font-weight-bold"
                       @click="deleteItem(form.jobs, job.id)"
-                    >Delete</v-btn>
+                    >{{ $t('components.form.experience.deleteItem') }}</v-btn>
                     <v-spacer></v-spacer>
                   </v-col>
                 </v-row>
@@ -205,7 +204,8 @@
             class="d-flex justify-start text-none font-weight-bold"
             @click="addItem(form.jobs, DEFAULT_JOB)"
           >
-            <v-icon class="mr-2">mdi-plus</v-icon>Add employment
+            <v-icon class="mr-2">mdi-plus</v-icon>
+            {{ $t('components.form.experience.addItem') }}
           </v-btn>
         </v-col>
       </v-row>
