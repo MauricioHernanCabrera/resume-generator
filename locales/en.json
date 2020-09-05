@@ -123,6 +123,14 @@
           }
         }
       }
+    },
+    "preview": {
+      "invalid": "Invalid preview",
+      "about": "About",
+      "experience": "Experience",
+      "education": "Education",
+      "skill": "Skills",
+      "contact": "Contact"
     }
   }
 }
