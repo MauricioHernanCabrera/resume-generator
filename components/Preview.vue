@@ -155,7 +155,6 @@ export default {
         this.profile.personalDetails.firstName.length > 0,
         this.profile.personalDetails.lastName.length > 0,
         this.profile.personalDetails.jobTitle.length > 0,
-        this.profile.personalDetails.professionalSummary.length > 0,
       ]
       return validations.every((item) => item)
     },

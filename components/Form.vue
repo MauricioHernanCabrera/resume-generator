@@ -230,7 +230,7 @@
                 <v-row>
                   <v-col cols="12" class="py-0 mb-2">
                     <span class="d-block font-weight-bold">
-                      {{ education.degree? education.degree : `(${$t('components.notSpecified')})` }}
+                      {{ education.degree? education.degree : `(${$t('shared.notSpecified')})` }}
                       {{ education.degree && education.school? ',' : '' }}
                       {{ education.school }}
                     </span>
@@ -375,7 +375,7 @@
                   <v-col cols="12" class="py-0 mb-2">
                     <span
                       class="d-block font-weight-bold"
-                    >{{ link.label? link.label : '(Not specified)' }}</span>
+                    >{{ link.label? link.label : `(${$t('shared.notSpecified')})` }}</span>
                   </v-col>
                   <v-col cols="12" class="py-0">
                     <span
@@ -430,7 +430,7 @@
             @click="addItem(form.links, DEFAULT_LINK)"
           >
             <v-icon class="mr-2">mdi-plus</v-icon>
-            {{$t('components.form.link.addItem') }}
+            {{ $t('components.form.link.addItem') }}
           </v-btn>
         </v-col>
       </v-row>
@@ -440,7 +440,7 @@
     <v-col cols="12" class="px-0">
       <v-row>
         <v-col cols="12">
-          <h2 class="text-h6 font-weight-bold">Skills</h2>
+          <h2 class="text-h6 font-weight-bold">{{ $t('components.form.skill.title') }}</h2>
         </v-col>
       </v-row>
 
@@ -453,7 +453,7 @@
                   <v-col cols="12" class="py-0 mb-2">
                     <span
                       class="d-block font-weight-bold"
-                    >{{ skill.name? skill.name : '(Not specified)' }}</span>
+                    >{{ skill.name? skill.name : `(${$t('shared.notSpecified')})` }}</span>
                   </v-col>
                   <v-col cols="12" class="py-0">
                     <span
@@ -468,8 +468,8 @@
                   <v-col cols="12" sm="6" class="py-0">
                     <v-text-field
                       v-model="skill.name"
-                      label="Skill"
-                      placeholder="Javascript"
+                      :label="$t('components.form.skill.fields.name.label')"
+                      :placeholder="$t('components.form.skill.fields.name.placeholder')"
                       filled
                     />
                   </v-col>
@@ -480,8 +480,8 @@
                       :items="categories"
                       clearable
                       filled
-                      label="Category"
-                      placeholder="Frontend"
+                      :label="$t('components.form.skill.fields.category.label')"
+                      :placeholder="$t('components.form.skill.fields.category.placeholder')"
                     />
                   </v-col>
 
@@ -492,7 +492,7 @@
                       text
                       class="text-none font-weight-bold"
                       @click="deleteItem(form.skills, skill.id)"
-                    >Delete</v-btn>
+                    >{{ $t('components.form.skill.deleteItem') }}</v-btn>
                     <v-spacer></v-spacer>
                   </v-col>
                 </v-row>
@@ -509,7 +509,8 @@
             class="d-flex justify-start text-none font-weight-bold"
             @click="addItem(form.skills, DEFAULT_SKILL)"
           >
-            <v-icon class="mr-2">mdi-plus</v-icon>Add skill
+            <v-icon class="mr-2">mdi-plus</v-icon>
+            {{ $t('components.form.skill.addItem') }}
           </v-btn>
         </v-col>
       </v-row>

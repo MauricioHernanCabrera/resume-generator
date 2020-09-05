@@ -107,6 +107,21 @@
             "label": "Link"
           }
         }
+      },
+      "skill": {
+        "title": "Skills",
+        "deleteItem": "Delete skill",
+        "addItem": "Add skill",
+        "fields": {
+          "name": {
+            "label": "Skill",
+            "placeholder": "Javascript"
+          },
+          "category": {
+            "label": "Category",
+            "placeholder": "Frontend"
+          }
+        }
       }
     }
   }
