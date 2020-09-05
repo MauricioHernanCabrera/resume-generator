@@ -1,0 +1,136 @@
+{
+  "shared": {
+    "notSpecified": "Not specified",
+    "present": "present"
+  },
+  "layout": {
+    "by": "by",
+    "previewOpen": "Open preview",
+    "previewClose": "Close preview",
+    "items": {
+      "downloadImage": "Download resume"
+    }
+  },
+  "components": {
+    "form": {
+      "personalDetails": {
+        "title": "Personal details",
+        "fields": {
+          "jobTitle": {
+            "label": "Job title",
+            "placeholder": "Software Engineer"
+          },
+          "firstName": {
+            "label": "First name"
+          },
+          "lastName": {
+            "label": "Last name"
+          },
+          "email": {
+            "label": "Email"
+          },
+          "phone": {
+            "label": "Phone"
+          },
+          "professionalSummary": {
+            "label": "Professional Summary",
+            "placeholder": "I'm a full-stack developer, specialising in web platform and security. If you're a forward-thinking organisation that's supportive of diversity and great development practices, I'd love to hear from you!"
+          }
+        }
+      },
+      "experience": {
+        "title": "Employment History",
+        "subtitle": "Include your last 10 years of relevant experience and dates in this section. List your most recent position first.",
+        "deleteItem": "Delete experience",
+        "addItem": "Add employment",
+        "fields": {
+          "title": {
+            "label": "Job title",
+            "placeholder": "Core Developer"
+          },
+          "employer": {
+            "label": "Employer",
+            "placeholder": "Bootstrap"
+          },
+          "startDate": {
+            "label": "Start date"
+          },
+          "endDate": {
+            "label": "End date"
+          },
+          "url": {
+            "label": "Employer url"
+          },
+          "description": {
+            "label": "Description",
+            "placeholder": "Bootstrap is the most popular web framework in the world, emphasizing accessibility for design-oriented staff and reliability across browsers."
+          }
+        }
+      },
+      "education": {
+        "title": "Education",
+        "subtitle": "If relevant, include your most recent educational achievements and the dates here",
+        "deleteItem": "Delete education",
+        "addItem": "Add education",
+        "fields": {
+          "school": {
+            "label": "School",
+            "placeholder": "Monash University"
+          },
+          "degree": {
+            "label": "Degree",
+            "placeholder": "Bachelor of Science and Computer Science"
+          },
+          "startDate": {
+            "label": "Start date"
+          },
+          "endDate": {
+            "label": "End date"
+          },
+          "city": {
+            "label": "City",
+            "placeholder": "United State"
+          }
+        }
+      },
+      "link": {
+        "title": "Websites & Social Links",
+        "subtitle": "You can add links to websites you want hiring managers to see! Perhaps It will be a link to your portfolio, LinkedIn profile, or personal website",
+        "deleteItem": "Delete link",
+        "addItem": "Add link",
+        "fields": {
+          "label": {
+            "label": "Label",
+            "placeholder": "GitHub"
+          },
+          "link": {
+            "label": "Link"
+          }
+        }
+      },
+      "skill": {
+        "title": "Skills",
+        "deleteItem": "Delete skill",
+        "addItem": "Add skill",
+        "fields": {
+          "name": {
+            "label": "Skill",
+            "placeholder": "Javascript"
+          },
+          "category": {
+            "label": "Category",
+            "placeholder": "Frontend"
+          }
+        }
+      }
+    },
+    "preview": {
+      "invalid": "Invalid preview",
+      "about": "About",
+      "experience": "Experience",
+      "education": "Education",
+      "skill": "Skills",
+      "contact": "Contact"
+    }
+  }
+}

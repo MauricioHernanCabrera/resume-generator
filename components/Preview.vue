@@ -1,6 +1,6 @@
 <template>
   <div class="profile">
-    <span class="profile__no_preview" v-if="!isValid">Invalid preview</span>
+    <span class="profile__no_preview" v-if="!isValid">{{ $t('components.preview.invalid') }}</span>
 
     <template v-else>
       <div class="profile__header">
@@ -27,14 +27,14 @@
         <div class="profile__pre">
           <template v-if="profile.personalDetails.professionalSummary.length > 0">
             <div class="profile__section profile__section--about">
-              <h2 class="profile__title">About</h2>
+              <h2 class="profile__title">{{ $t('components.preview.about') }}</h2>
               <p class="profile__text">{{ profile.personalDetails.professionalSummary }}</p>
             </div>
           </template>
 
           <template v-if="profile.jobs.length > 0">
             <div class="profile__section profile__section--experience">
-              <h3 class="profile__title">Experience</h3>
+              <h3 class="profile__title">{{ $t('components.preview.experience') }}</h3>
 
               <ul class="list_experience">
                 <li class="list_experience__item" v-for="job in profile.jobs" :key="job.id">
@@ -51,7 +51,7 @@
                     <template
                       v-if="job.endDate"
                     >{{ job.endDate | monthYear }}</template>
-                    <template v-else>present</template>
+                    <template v-else>{{ $t('shared.present') }}</template>
                   </span>
 
                   <p class="list_experience__description" v-html="nl2br(job.description)" />
@@ -62,7 +62,7 @@
 
           <template v-if="profile.educations.length > 0">
             <div class="profile__section profile__section--education">
-              <h3 class="profile__title">Education</h3>
+              <h3 class="profile__title">{{ $t('components.preview.education') }}</h3>
 
               <ul class="list_education">
                 <li
@@ -83,7 +83,7 @@
                     <template
                       v-if="education.endDate"
                     >{{ education.endDate | monthYear }}</template>
-                    <template v-else>present</template>
+                    <template v-else>{{ $t('shared.present') }}</template>
                   </span>
                 </li>
               </ul>
@@ -94,7 +94,7 @@
         <div class="profile__append">
           <template v-if="profile.skills.length > 0">
             <div class="profile__section profile__section--skills">
-              <h3 class="profile__title">Skills</h3>
+              <h3 class="profile__title">{{ $t('components.preview.skill') }}</h3>
 
               <ul class="list_category">
                 <li class="list_category__item" v-for="category in categories" :key="category.name">
@@ -114,7 +114,7 @@
 
           <template v-if="profile.links.length > 0">
             <div class="profile__section profile__section--social_links">
-              <h3 class="profile__title">Contact</h3>
+              <h3 class="profile__title">{{ $t('components.preview.contact') }}</h3>
 
               <ul class="list_contact">
                 <li class="list_contact__item" v-for="link in profile.links" :key="link.id">
@@ -155,7 +155,6 @@ export default {
         this.profile.personalDetails.firstName.length > 0,
         this.profile.personalDetails.lastName.length > 0,
         this.profile.personalDetails.jobTitle.length > 0,
-        this.profile.personalDetails.professionalSummary.length > 0,
       ]
       return validations.every((item) => item)
     },
@@ -187,7 +186,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import './../assets/scss/utils.scss';
 
 .profile {

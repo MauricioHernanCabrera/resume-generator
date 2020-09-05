@@ -2,8 +2,8 @@
   <v-app dark>
     <v-app-bar fixed app color="white" class="app_bar text-center elevation-0">
       <v-toolbar-title class="font-weight-medium subtitle-2 d-none d-sm-block">
-        {{ title }}
-        by
+        Resume Generator
+        {{ $t('layout.by') }}
         <a
           href="https://github.com/mauriciohernancabrera"
         >Mauricio Hernan Cabrera</a>
@@ -15,7 +15,7 @@
         text
         class="text-none font-weight-bold primary--text d-lg-none"
         @click="SET_PREVIEW_OPEN(!previewOpen)"
-      >{{ previewOpen? 'Close' : 'Open' }} preview</v-btn>
+      >{{ previewOpen? $t('layout.previewClose') : $t('layout.previewClose') }}</v-btn>
 
       <v-menu offset-y>
         <template v-slot:activator="{ on, attrs }">
@@ -26,7 +26,7 @@
 
         <v-list>
           <v-list-item @click="downloadImage">
-            <v-list-item-title>Download Image</v-list-item-title>
+            <v-list-item-title>{{ $t('layout.items.downloadImage') }}</v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -43,18 +43,6 @@ import { mapState, mapMutations } from 'vuex'
 import html2canvas from 'html2canvas'
 
 export default {
-  data() {
-    return {
-      title: 'Resume Generator',
-      items: [
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me 2' },
-      ],
-    }
-  },
-
   computed: {
     ...mapState(['previewOpen']),
   },
