@@ -359,10 +359,10 @@
     <v-col cols="12" class="px-0">
       <v-row>
         <v-col cols="12">
-          <h2 class="text-h6 font-weight-bold">Websites & Social Links</h2>
+          <h2 class="text-h6 font-weight-bold">{{ $t('components.form.link.title') }}</h2>
           <p
             class="text-subtitle-2 font-weight-normal grey--text text--lighten-1"
-          >You can add links to websites you want hiring managers to see! Perhaps It will be a link to your portfolio, LinkedIn profile, or personal website</p>
+          >{{ $t('components.form.link.subtitle') }}</p>
         </v-col>
       </v-row>
 
@@ -388,13 +388,18 @@
               <v-expansion-panel-content>
                 <v-row>
                   <v-col cols="12" sm="6" class="py-0">
-                    <v-text-field v-model="link.label" label="Label" placeholder="GitHub" filled />
+                    <v-text-field
+                      v-model="link.label"
+                      :label="$t('components.form.link.fields.label.label')"
+                      :placeholder="$t('components.form.link.fields.label.placeholder')"
+                      filled
+                    />
                   </v-col>
 
                   <v-col cols="12" sm="6" class="py-0">
                     <v-text-field
                       v-model="link.link"
-                      label="Link"
+                      :label="$t('components.form.link.fields.link.label')"
                       placeholder="https://github.com/mauriciohernancabrera"
                       filled
                     />
@@ -407,7 +412,7 @@
                       text
                       class="text-none font-weight-bold"
                       @click="deleteItem(form.links, link.id)"
-                    >Delete</v-btn>
+                    >{{ $t('components.form.link.deleteItem') }}</v-btn>
                     <v-spacer></v-spacer>
                   </v-col>
                 </v-row>
@@ -424,7 +429,8 @@
             class="d-flex justify-start text-none font-weight-bold"
             @click="addItem(form.links, DEFAULT_LINK)"
           >
-            <v-icon class="mr-2">mdi-plus</v-icon>Add link
+            <v-icon class="mr-2">mdi-plus</v-icon>
+            {{$t('components.form.link.addItem') }}
           </v-btn>
         </v-col>
       </v-row>

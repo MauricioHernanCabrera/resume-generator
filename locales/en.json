@@ -92,6 +92,21 @@
             "placeholder": "United State"
           }
         }
+      },
+      "link": {
+        "title": "Websites & Social Links",
+        "subtitle": "You can add links to websites you want hiring managers to see! Perhaps It will be a link to your portfolio, LinkedIn profile, or personal website",
+        "deleteItem": "Delete link",
+        "addItem": "Add link",
+        "fields": {
+          "label": {
+            "label": "Label",
+            "placeholder": "GitHub"
+          },
+          "link": {
+            "label": "Link"
+          }
+        }
       }
     }
   }
