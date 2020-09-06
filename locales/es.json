@@ -10,10 +10,12 @@
   },
   "layout": {
     "by": "por",
-    "previewOpen": "Abrir vista previa",
-    "previewClose": "Cerrar vista previa",
     "items": {
-      "downloadImage": "Descargar CV"
+      "previewOpen": "Abrir vista previa",
+      "previewClose": "Cerrar vista previa",
+      "downloadImage": "Descargar CV",
+      "exampleInactive": "Ejemplo inactivo",
+      "exampleActive": "Ejemplo activo"
     }
   },
   "components": {

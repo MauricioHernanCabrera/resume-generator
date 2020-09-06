@@ -40,7 +40,7 @@ export default {
 
   data() {
     return {
-      form: DEFAULT_PROFILE,
+      form: JSON.parse(JSON.stringify(DEFAULT_PROFILE)),
       // form: FAKE_PROFILE,
       loading: true,
     }
@@ -58,10 +58,18 @@ export default {
         this.SET_PREVIEW_OPEN(false)
       }
     },
+
+    exampleActive(value) {
+      if (value) {
+        this.form = JSON.parse(JSON.stringify(FAKE_PROFILE))
+      } else {
+        this.form = JSON.parse(JSON.stringify(DEFAULT_PROFILE))
+      }
+    },
   },
 
   computed: {
-    ...mapState(['previewOpen']),
+    ...mapState(['previewOpen', 'exampleActive']),
   },
 
   methods: {

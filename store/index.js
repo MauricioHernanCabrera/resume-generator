@@ -1,8 +1,8 @@
 export const state = () => ({
   previewOpen: false,
-
   locales: ['en', 'es'],
   locale: 'en',
+  exampleActive: false,
 })
 
 export const mutations = {
@@ -14,5 +14,9 @@ export const mutations = {
     if (state.locales.includes(locale)) {
       state.locale = locale
     }
+  },
+
+  SET_EXAMPLE_ACTIVE(state, exampleActive) {
+    state.exampleActive = exampleActive
   },
 }

@@ -10,10 +10,12 @@
   },
   "layout": {
     "by": "by",
-    "previewOpen": "Open preview",
-    "previewClose": "Close preview",
     "items": {
-      "downloadImage": "Download resume"
+      "previewOpen": "Open preview",
+      "previewClose": "Close preview",
+      "downloadImage": "Download resume",
+      "exampleInactive": "Example inactive",
+      "exampleActive": "Example active"
     }
   },
   "components": {

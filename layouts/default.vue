@@ -36,8 +36,14 @@
               <v-list-item-title>{{ $t('layout.items.downloadImage') }}</v-list-item-title>
             </v-list-item>
 
+            <v-list-item @click="SET_EXAMPLE_ACTIVE(!exampleActive)">
+              <v-list-item-title v-if="exampleActive">{{ $t('layout.items.exampleInactive') }}</v-list-item-title>
+              <v-list-item-title v-else>{{ $t('layout.items.exampleActive') }}</v-list-item-title>
+            </v-list-item>
+
             <v-list-item @click="SET_PREVIEW_OPEN(!previewOpen)" class="d-lg-none">
-              <v-list-item-title>{{ previewOpen? $t('layout.previewClose') : $t('layout.previewOpen') }}</v-list-item-title>
+              <v-list-item-title v-if="previewOpen">{{ $t('layout.items.previewClose') }}</v-list-item-title>
+              <v-list-item-title v-else>{{ $t('layout.items.previewOpen') }}</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-card>
@@ -56,7 +62,7 @@ import html2canvas from 'html2canvas'
 
 export default {
   computed: {
-    ...mapState(['previewOpen', 'locale']),
+    ...mapState(['previewOpen', 'locale', 'exampleActive']),
 
     locales() {
       return [
@@ -67,7 +73,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['SET_PREVIEW_OPEN', 'SET_LANG']),
+    ...mapMutations(['SET_PREVIEW_OPEN', 'SET_LANG', 'SET_EXAMPLE_ACTIVE']),
 
     setLanguage(value) {
       this.SET_LANG(value)
