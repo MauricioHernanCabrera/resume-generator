@@ -1,10 +1,11 @@
 <template>
   <v-app dark>
-    <v-app-bar fixed app color="white" class="app_bar text-center elevation-0">
+    <v-app-bar fixed app color="primary" dark class="app_bar text-center elevation-0">
       <v-toolbar-title class="font-weight-medium subtitle-2 d-none d-sm-block">
         Resume Generator
         {{ $t('layout.by') }}
         <a
+          class="white--text"
           href="https://github.com/mauriciohernancabrera"
         >Mauricio Hernan Cabrera</a>
       </v-toolbar-title>
