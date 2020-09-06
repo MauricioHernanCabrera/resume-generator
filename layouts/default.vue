@@ -1,13 +1,21 @@
 <template>
   <v-app dark>
     <v-app-bar fixed app color="primary" dark class="app_bar text-center elevation-0">
-      <v-toolbar-title class="font-weight-medium subtitle-2 d-none d-sm-block">
-        Resume Generator
-        {{ $t('layout.by') }}
-        <a
-          class="white--text"
-          href="https://github.com/mauriciohernancabrera"
-        >Mauricio Hernan Cabrera</a>
+      <v-toolbar-title class="font-weight-medium subtitle-2 d-flex align-center">
+        <img
+          class="d-block mr-1"
+          src="/images/logo_color.png"
+          height="32px"
+          alt="Logo of Resume generator"
+        />
+        <span class="d-block mr-1">Resume Generator</span>
+        <span class="d-none d-sm-block">
+          {{ $t('layout.by') }}
+          <a
+            class="white--text"
+            href="https://github.com/mauriciohernancabrera"
+          >Mauricio Hernan Cabrera</a>
+        </span>
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
