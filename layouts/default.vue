@@ -1,10 +1,11 @@
 <template>
   <v-app dark>
-    <v-app-bar fixed app color="white" class="app_bar text-center elevation-0">
+    <v-app-bar fixed app color="primary" dark class="app_bar text-center elevation-0">
       <v-toolbar-title class="font-weight-medium subtitle-2 d-none d-sm-block">
         Resume Generator
         {{ $t('layout.by') }}
         <a
+          class="white--text"
           href="https://github.com/mauriciohernancabrera"
         >Mauricio Hernan Cabrera</a>
       </v-toolbar-title>
@@ -36,8 +37,17 @@
               <v-list-item-title>{{ $t('layout.items.downloadImage') }}</v-list-item-title>
             </v-list-item>
 
+            <v-list-item @click="SET_EXAMPLE_ACTIVE(!exampleActive)">
+              <v-list-item-title>{{ $t('layout.items.showExample') }}</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item @click="SET_RESET_FORM_ACTIVE(!resetFormActive)">
+              <v-list-item-title>{{ $t('layout.items.resetForm') }}</v-list-item-title>
+            </v-list-item>
+
             <v-list-item @click="SET_PREVIEW_OPEN(!previewOpen)" class="d-lg-none">
-              <v-list-item-title>{{ previewOpen? $t('layout.previewClose') : $t('layout.previewOpen') }}</v-list-item-title>
+              <v-list-item-title v-if="previewOpen">{{ $t('layout.items.previewClose') }}</v-list-item-title>
+              <v-list-item-title v-else>{{ $t('layout.items.previewOpen') }}</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-card>
@@ -56,7 +66,7 @@ import html2canvas from 'html2canvas'
 
 export default {
   computed: {
-    ...mapState(['previewOpen', 'locale']),
+    ...mapState(['previewOpen', 'locale', 'exampleActive', 'resetFormActive']),
 
     locales() {
       return [
@@ -67,7 +77,12 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['SET_PREVIEW_OPEN', 'SET_LANG']),
+    ...mapMutations([
+      'SET_PREVIEW_OPEN',
+      'SET_LANG',
+      'SET_EXAMPLE_ACTIVE',
+      'SET_RESET_FORM_ACTIVE',
+    ]),
 
     setLanguage(value) {
       this.SET_LANG(value)
