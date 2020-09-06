@@ -14,8 +14,8 @@
       "previewOpen": "Abrir vista previa",
       "previewClose": "Cerrar vista previa",
       "downloadImage": "Descargar CV",
-      "exampleInactive": "Ejemplo inactivo",
-      "exampleActive": "Ejemplo activo"
+      "showExample": "Mostrar ejemplo",
+      "resetForm": "Reiniciar formulario"
     }
   },
   "components": {

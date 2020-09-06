@@ -3,6 +3,7 @@ export const state = () => ({
   locales: ['en', 'es'],
   locale: 'en',
   exampleActive: false,
+  resetFormActive: false,
 })
 
 export const mutations = {
@@ -18,5 +19,9 @@ export const mutations = {
 
   SET_EXAMPLE_ACTIVE(state, exampleActive) {
     state.exampleActive = exampleActive
+  },
+
+  SET_RESET_FORM_ACTIVE(state, resetFormActive) {
+    state.resetFormActive = resetFormActive
   },
 }

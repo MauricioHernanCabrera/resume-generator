@@ -37,8 +37,11 @@
             </v-list-item>
 
             <v-list-item @click="SET_EXAMPLE_ACTIVE(!exampleActive)">
-              <v-list-item-title v-if="exampleActive">{{ $t('layout.items.exampleInactive') }}</v-list-item-title>
-              <v-list-item-title v-else>{{ $t('layout.items.exampleActive') }}</v-list-item-title>
+              <v-list-item-title>{{ $t('layout.items.showExample') }}</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item @click="SET_RESET_FORM_ACTIVE(!resetFormActive)">
+              <v-list-item-title>{{ $t('layout.items.resetForm') }}</v-list-item-title>
             </v-list-item>
 
             <v-list-item @click="SET_PREVIEW_OPEN(!previewOpen)" class="d-lg-none">
@@ -62,7 +65,7 @@ import html2canvas from 'html2canvas'
 
 export default {
   computed: {
-    ...mapState(['previewOpen', 'locale', 'exampleActive']),
+    ...mapState(['previewOpen', 'locale', 'exampleActive', 'resetFormActive']),
 
     locales() {
       return [
@@ -73,7 +76,12 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['SET_PREVIEW_OPEN', 'SET_LANG', 'SET_EXAMPLE_ACTIVE']),
+    ...mapMutations([
+      'SET_PREVIEW_OPEN',
+      'SET_LANG',
+      'SET_EXAMPLE_ACTIVE',
+      'SET_RESET_FORM_ACTIVE',
+    ]),
 
     setLanguage(value) {
       this.SET_LANG(value)

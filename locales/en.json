@@ -14,8 +14,8 @@
       "previewOpen": "Open preview",
       "previewClose": "Close preview",
       "downloadImage": "Download resume",
-      "exampleInactive": "Example inactive",
-      "exampleActive": "Example active"
+      "showExample": "Show example",
+      "resetForm": "Reset form"
     }
   },
   "components": {
