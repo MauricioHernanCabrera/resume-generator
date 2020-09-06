@@ -11,24 +11,36 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn
-        text
-        class="text-none font-weight-bold primary--text d-lg-none"
-        @click="SET_PREVIEW_OPEN(!previewOpen)"
-      >{{ previewOpen? $t('layout.previewClose') : $t('layout.previewClose') }}</v-btn>
-
-      <v-menu offset-y>
+      <v-menu offset-y :close-on-click="false" :close-on-content-click="false">
         <template v-slot:activator="{ on, attrs }">
           <v-btn icon v-bind="attrs" v-on="on">
             <v-icon>mdi-dots-vertical</v-icon>
           </v-btn>
         </template>
 
-        <v-list>
-          <v-list-item @click="downloadImage">
-            <v-list-item-title>{{ $t('layout.items.downloadImage') }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
+        <v-card>
+          <v-list>
+            <v-list-item class="px-0">
+              <v-select
+                :items="locales"
+                :label="$t('language.text')"
+                solo
+                flat
+                class="px-1"
+                hide-details
+                @input="setLanguage"
+              ></v-select>
+            </v-list-item>
+
+            <v-list-item @click="downloadImage">
+              <v-list-item-title>{{ $t('layout.items.downloadImage') }}</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item @click="SET_PREVIEW_OPEN(!previewOpen)" class="d-lg-none">
+              <v-list-item-title>{{ previewOpen? $t('layout.previewClose') : $t('layout.previewOpen') }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-card>
       </v-menu>
     </v-app-bar>
 
@@ -44,11 +56,23 @@ import html2canvas from 'html2canvas'
 
 export default {
   computed: {
-    ...mapState(['previewOpen']),
+    ...mapState(['previewOpen', 'locale']),
+
+    locales() {
+      return [
+        { text: this.$t('language.en'), value: 'en' },
+        { text: this.$t('language.es'), value: 'es' },
+      ]
+    },
   },
 
   methods: {
-    ...mapMutations(['SET_PREVIEW_OPEN']),
+    ...mapMutations(['SET_PREVIEW_OPEN', 'SET_LANG']),
+
+    setLanguage(value) {
+      this.SET_LANG(value)
+      this.$i18n.locale = value
+    },
 
     async downloadImage() {
       const profileEl = document.getElementById('profile')

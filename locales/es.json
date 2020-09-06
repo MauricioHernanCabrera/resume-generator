@@ -1,4 +1,9 @@
 {
+  "language": {
+    "es": "Español",
+    "en": "Ingles",
+    "text": "Lenguaje"
+  },
   "shared": {
     "notSpecified": "Sin especificar",
     "present": "Actualidad"

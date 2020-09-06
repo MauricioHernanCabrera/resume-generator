@@ -2,7 +2,7 @@ export const state = () => ({
   previewOpen: false,
 
   locales: ['en', 'es'],
-  locale: 'es',
+  locale: 'en',
 })
 
 export const mutations = {
