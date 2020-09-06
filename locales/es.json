@@ -1,0 +1,141 @@
+{
+  "language": {
+    "es": "Español",
+    "en": "Ingles",
+    "text": "Lenguaje"
+  },
+  "shared": {
+    "notSpecified": "Sin especificar",
+    "present": "Actualidad"
+  },
+  "layout": {
+    "by": "por",
+    "previewOpen": "Abrir vista previa",
+    "previewClose": "Cerrar vista previa",
+    "items": {
+      "downloadImage": "Descargar CV"
+    }
+  },
+  "components": {
+    "form": {
+      "personalDetails": {
+        "title": "Detalles personales",
+        "fields": {
+          "jobTitle": {
+            "label": "Cargo",
+            "placeholder": "Desarrollador Full-stack"
+          },
+          "firstName": {
+            "label": "Nombre"
+          },
+          "lastName": {
+            "label": "Apellido"
+          },
+          "email": {
+            "label": "Correo electrónico"
+          },
+          "phone": {
+            "label": "Teléfono"
+          },
+          "professionalSummary": {
+            "label": "Resumen Profesional",
+            "placeholder": "Soy un desarrollador full-stack, especializado en seguridad y plataforma web. Si es una organización con visión de futuro que apoya la diversidad y las excelentes prácticas de desarrollo, ¡me encantaría saber de usted!"
+          }
+        }
+      },
+      "experience": {
+        "title": "Historial de empleo",
+        "subtitle": "Incluya sus últimos 10 años de experiencia y fechas relevantes en esta sección. Enumere primero su puesto más reciente.",
+        "deleteItem": "Eliminar experiencia",
+        "addItem": "Agregar experiencia",
+        "fields": {
+          "title": {
+            "label": "Cargo",
+            "placeholder": "Desarrollador de software"
+          },
+          "employer": {
+            "label": "Empleador",
+            "placeholder": "Bootstrap"
+          },
+          "startDate": {
+            "label": "Fecha de inicio"
+          },
+          "endDate": {
+            "label": "Fecha de fin"
+          },
+          "url": {
+            "label": "Enlace del empleador"
+          },
+          "description": {
+            "label": "Descripción",
+            "placeholder": "Bootstrap es el framework web más popular del mundo, enfatizando la accesibilidad para el personal orientado al diseño y la confiabilidad en todos los navegadores."
+          }
+        }
+      },
+      "education": {
+        "title": "Educación",
+        "subtitle": "Si es relevante, incluya sus logros educativos más recientes y las fechas aquí.",
+        "deleteItem": "Eliminar educación",
+        "addItem": "Agregar educación",
+        "fields": {
+          "school": {
+            "label": "Institución",
+            "placeholder": "UNNE"
+          },
+          "degree": {
+            "label": "Titulo",
+            "placeholder": "Licenciatura en Sistemas de Información"
+          },
+          "startDate": {
+            "label": "Fecha de inicio"
+          },
+          "endDate": {
+            "label": "Fecha de fin"
+          },
+          "city": {
+            "label": "Ciudad",
+            "placeholder": "Argentina"
+          }
+        }
+      },
+      "link": {
+        "title": "Sitios web y enlaces sociales",
+        "subtitle": "¡Puede agregar enlaces a sitios web que desea que vean los gerentes de contratación! Quizás sea un enlace a su cartera, perfil de LinkedIn o sitio web personal",
+        "deleteItem": "Eliminar enlace",
+        "addItem": "Agregar enlace",
+        "fields": {
+          "label": {
+            "label": "Etiqueta",
+            "placeholder": "GitHub"
+          },
+          "link": {
+            "label": "Enlace"
+          }
+        }
+      },
+      "skill": {
+        "title": "Habilidades",
+        "deleteItem": "Eliminar habilidad",
+        "addItem": "Agregar habilidad",
+        "fields": {
+          "name": {
+            "label": "Habilidad",
+            "placeholder": "Javascript"
+          },
+          "category": {
+            "label": "Categoria",
+            "placeholder": "Frontend"
+          }
+        }
+      }
+    },
+    "preview": {
+      "invalid": "Vista previa invalida",
+      "about": "Sobre mi",
+      "experience": "Experiencia",
+      "education": "Educación",
+      "skill": "Habilidades",
+      "contact": "Contacto"
+    }
+  }
+}

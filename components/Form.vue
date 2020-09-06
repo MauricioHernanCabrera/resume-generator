@@ -4,7 +4,7 @@
     <v-col cols="12" class="py-0 px-0">
       <v-row>
         <v-col cols="12" class="pt-0">
-          <h2 class="text-h6 font-weight-bold">Personal details</h2>
+          <h2 class="text-h6 font-weight-bold">{{ $t('components.form.personalDetails.title') }}</h2>
         </v-col>
       </v-row>
 
@@ -12,8 +12,8 @@
         <v-col cols="12" sm="6" class="py-0">
           <v-text-field
             v-model="form.personalDetails.jobTitle"
-            label="Job title"
-            placeholder="Software Engineer"
+            :label="$t('components.form.personalDetails.fields.jobTitle.label')"
+            :placeholder="$t('components.form.personalDetails.fields.jobTitle.placeholder')"
             filled
           />
         </v-col>
@@ -23,7 +23,7 @@
         <v-col cols="12" sm="6" class="py-0">
           <v-text-field
             v-model="form.personalDetails.firstName"
-            label="First name"
+            :label="$t('components.form.personalDetails.fields.firstName.label')"
             placeholder="Mauricio Hernan"
             filled
           />
@@ -32,7 +32,7 @@
         <v-col cols="12" sm="6" class="py-0">
           <v-text-field
             v-model="form.personalDetails.lastName"
-            label="Last name"
+            :label="$t('components.form.personalDetails.fields.lastName.label')"
             placeholder="Cabrera"
             filled
           />
@@ -41,8 +41,8 @@
         <v-col cols="12" sm="6" class="py-0">
           <v-text-field
             v-model="form.personalDetails.email"
-            label="Job title"
-            placeholder="Software Engineer"
+            :label="$t('components.form.personalDetails.fields.email.label')"
+            placeholder="bardihardorow@gmail.com"
             filled
           />
         </v-col>
@@ -50,7 +50,7 @@
         <v-col cols="12" sm="6" class="py-0">
           <v-text-field
             v-model="form.personalDetails.phone"
-            label="Phone"
+            :label="$t('components.form.personalDetails.fields.phone.label')"
             placeholder="5493794883889"
             filled
           />
@@ -59,8 +59,8 @@
         <v-col cols="12" class="py-0">
           <v-textarea
             v-model="form.personalDetails.professionalSummary"
-            label="Professional Summary"
-            placeholder="I'm a full-stack developer, specialising in web platform and security. If you're a forward-thinking organisation that's supportive of diversity and great development practices, I'd love to hear from you!"
+            :label="$t('components.form.personalDetails.fields.professionalSummary.label')"
+            :placeholder="$t('components.form.personalDetails.fields.professionalSummary.placeholder')"
             filled
           />
         </v-col>
@@ -71,10 +71,10 @@
     <v-col cols="12" class="px-0">
       <v-row>
         <v-col cols="12">
-          <h2 class="text-h6 font-weight-bold">Employment History</h2>
+          <h2 class="text-h6 font-weight-bold">{{ $t('components.form.experience.title') }}</h2>
           <p
             class="text-subtitle-2 font-weight-normal grey--text text--lighten-1"
-          >Include your last 10 years of relevant experience and dates in this section. List your most recent position first.</p>
+          >{{ $t('components.form.experience.subtitle') }}</p>
         </v-col>
       </v-row>
 
@@ -86,8 +86,7 @@
                 <v-row>
                   <v-col cols="12" class="py-0 mb-2">
                     <span class="d-block font-weight-bold">
-                      {{ job.title? job.title : '(Not specified)' }}
-                      {{ job.title && job.employer? 'at' : '' }}
+                      {{ job.title? job.title : `(${$t('shared.notSpecified')})` }}{{ job.title && job.employer? ', ' : '' }}
                       {{ job.employer }}
                     </span>
                   </v-col>
@@ -96,10 +95,12 @@
                     <span
                       class="text-subtitle-2 d-inline-block font-weight-normal grey--text text--lighten-1"
                     >
-                      {{ job.startDate }}
+                      <template v-if="job.startDate">{{ job.startDate | monthYear }}</template>
                       {{ job.startDate && job.endDate? '—' : '' }}
-                      {{ job.startDate && !job.endDate? '— present' : '' }}
-                      {{ job.endDate }}
+                      {{ job.startDate && !job.endDate? `— ${$t('shared.present')}` : '' }}
+                      <template
+                        v-if="job.endDate"
+                      >{{ job.endDate | monthYear }}</template>
                     </span>
                   </v-col>
                 </v-row>
@@ -110,8 +111,8 @@
                   <v-col cols="12" sm="6" class="py-0">
                     <v-text-field
                       v-model="job.title"
-                      label="Job title"
-                      placeholder="Core Developer"
+                      :label="$t('components.form.experience.fields.title.label')"
+                      :placeholder="$t('components.form.experience.fields.title.placeholder')"
                       filled
                     />
                   </v-col>
@@ -119,8 +120,8 @@
                   <v-col cols="12" sm="6" class="py-0">
                     <v-text-field
                       v-model="job.employer"
-                      label="Employer"
-                      placeholder="Bootstrap"
+                      :label="$t('components.form.experience.fields.employer.label')"
+                      :placeholder="$t('components.form.experience.fields.employer.placeholder')"
                       filled
                     />
                   </v-col>
@@ -130,7 +131,7 @@
                       <template v-slot:activator="{ on, attrs }">
                         <v-text-field
                           v-model="job.startDate"
-                          label="Start date"
+                          :label="$t('components.form.experience.fields.startDate.label')"
                           readonly
                           filled
                           v-bind="attrs"
@@ -148,7 +149,7 @@
                         <v-text-field
                           clearable
                           v-model="job.endDate"
-                          label="End date"
+                          :label="$t('components.form.experience.fields.endDate.label')"
                           placeholder="-"
                           readonly
                           filled
@@ -164,7 +165,7 @@
                   <v-col cols="12" sm="6" class="py-0">
                     <v-text-field
                       v-model="job.url"
-                      label="Employer url"
+                      :label="$t('components.form.experience.fields.url.label')"
                       placeholder="https://bootstrap.com"
                       filled
                     />
@@ -173,8 +174,8 @@
                   <v-col cols="12" class="py-0">
                     <v-textarea
                       v-model="job.description"
-                      label="Description"
-                      placeholder="Bootstrap is the most popular web framework in the world, emphasizing accessibility for design-oriented staff and reliability across browsers."
+                      :label="$t('components.form.experience.fields.description.label')"
+                      :placeholder="$t('components.form.experience.fields.description.placeholder')"
                       filled
                     />
                   </v-col>
@@ -186,7 +187,7 @@
                       text
                       class="text-none font-weight-bold"
                       @click="deleteItem(form.jobs, job.id)"
-                    >Delete</v-btn>
+                    >{{ $t('components.form.experience.deleteItem') }}</v-btn>
                     <v-spacer></v-spacer>
                   </v-col>
                 </v-row>
@@ -203,7 +204,8 @@
             class="d-flex justify-start text-none font-weight-bold"
             @click="addItem(form.jobs, DEFAULT_JOB)"
           >
-            <v-icon class="mr-2">mdi-plus</v-icon>Add employment
+            <v-icon class="mr-2">mdi-plus</v-icon>
+            {{ $t('components.form.experience.addItem') }}
           </v-btn>
         </v-col>
       </v-row>
@@ -213,10 +215,10 @@
     <v-col cols="12" class="px-0">
       <v-row>
         <v-col cols="12">
-          <h2 class="text-h6 font-weight-bold">Education</h2>
+          <h2 class="text-h6 font-weight-bold">{{ $t('components.form.education.title') }}</h2>
           <p
             class="text-subtitle-2 font-weight-normal grey--text text--lighten-1"
-          >If relevant, include your most recent educational achievements and the dates here</p>
+          >{{ $t('components.form.education.subtitle') }}</p>
         </v-col>
       </v-row>
 
@@ -228,7 +230,7 @@
                 <v-row>
                   <v-col cols="12" class="py-0 mb-2">
                     <span class="d-block font-weight-bold">
-                      {{ education.degree? education.degree : '(Not specified)' }}
+                      {{ education.degree? education.degree : `(${$t('shared.notSpecified')})` }}
                       {{ education.degree && education.school? ',' : '' }}
                       {{ education.school }}
                     </span>
@@ -237,10 +239,12 @@
                     <span
                       class="text-subtitle-2 d-inline-block font-weight-normal grey--text text--lighten-1"
                     >
-                      {{ education.startDate }}
+                      <template v-if="education.startDate">{{ education.startDate | monthYear }}</template>
                       {{ education.startDate && education.endDate? '—' : '' }}
-                      {{ education.startDate && !education.endDate? '— present' : '' }}
-                      {{ education.endDate }}
+                      {{ education.startDate && !education.endDate? `— ${$t('shared.present')}` : '' }}
+                      <template
+                        v-if="education.endDate"
+                      >{{ education.endDate | monthYear }}</template>
                     </span>
                   </v-col>
                 </v-row>
@@ -251,8 +255,8 @@
                   <v-col cols="12" sm="6" class="py-0">
                     <v-text-field
                       v-model="education.school"
-                      label="School"
-                      placeholder="Monash University"
+                      :label="$t('components.form.education.fields.school.label')"
+                      :placeholder="$t('components.form.education.fields.school.placeholder')"
                       filled
                     />
                   </v-col>
@@ -260,8 +264,8 @@
                   <v-col cols="12" sm="6" class="py-0">
                     <v-text-field
                       v-model="education.degree"
-                      label="Degree"
-                      placeholder="Bachelor of Science and Computer Science"
+                      :label="$t('components.form.education.fields.degree.label')"
+                      :placeholder="$t('components.form.education.fields.degree.placeholder')"
                       filled
                     />
                   </v-col>
@@ -275,7 +279,7 @@
                       <template v-slot:activator="{ on, attrs }">
                         <v-text-field
                           v-model="education.startDate"
-                          label="Start date"
+                          :label="$t('components.form.education.fields.startDate.label')"
                           readonly
                           filled
                           v-bind="attrs"
@@ -298,7 +302,7 @@
                         <v-text-field
                           clearable
                           v-model="education.endDate"
-                          label="End date"
+                          :label="$t('components.form.education.fields.endDate.label')"
                           placeholder="-"
                           readonly
                           filled
@@ -314,8 +318,8 @@
                   <v-col cols="12" sm="6" class="py-0">
                     <v-text-field
                       v-model="education.city"
-                      label="City"
-                      placeholder="United State"
+                      :label="$t('components.form.education.fields.city.label')"
+                      :placeholder="$t('components.form.education.fields.city.placeholder')"
                       filled
                     />
                   </v-col>
@@ -327,7 +331,7 @@
                       text
                       class="text-none font-weight-bold"
                       @click="deleteItem(form.educations, education.id)"
-                    >Delete</v-btn>
+                    >{{ $t('components.form.education.deleteItem') }}</v-btn>
                     <v-spacer></v-spacer>
                   </v-col>
                 </v-row>
@@ -344,7 +348,8 @@
             class="d-flex justify-start text-none font-weight-bold"
             @click="addItem(form.educations, DEFAULT_EDUCATION)"
           >
-            <v-icon class="mr-2">mdi-plus</v-icon>Add education
+            <v-icon class="mr-2">mdi-plus</v-icon>
+            {{ $t('components.form.education.addItem') }}
           </v-btn>
         </v-col>
       </v-row>
@@ -354,10 +359,10 @@
     <v-col cols="12" class="px-0">
       <v-row>
         <v-col cols="12">
-          <h2 class="text-h6 font-weight-bold">Websites & Social Links</h2>
+          <h2 class="text-h6 font-weight-bold">{{ $t('components.form.link.title') }}</h2>
           <p
             class="text-subtitle-2 font-weight-normal grey--text text--lighten-1"
-          >You can add links to websites you want hiring managers to see! Perhaps It will be a link to your portfolio, LinkedIn profile, or personal website</p>
+          >{{ $t('components.form.link.subtitle') }}</p>
         </v-col>
       </v-row>
 
@@ -370,7 +375,7 @@
                   <v-col cols="12" class="py-0 mb-2">
                     <span
                       class="d-block font-weight-bold"
-                    >{{ link.label? link.label : '(Not specified)' }}</span>
+                    >{{ link.label? link.label : `(${$t('shared.notSpecified')})` }}</span>
                   </v-col>
                   <v-col cols="12" class="py-0">
                     <span
@@ -383,13 +388,18 @@
               <v-expansion-panel-content>
                 <v-row>
                   <v-col cols="12" sm="6" class="py-0">
-                    <v-text-field v-model="link.label" label="Label" placeholder="GitHub" filled />
+                    <v-text-field
+                      v-model="link.label"
+                      :label="$t('components.form.link.fields.label.label')"
+                      :placeholder="$t('components.form.link.fields.label.placeholder')"
+                      filled
+                    />
                   </v-col>
 
                   <v-col cols="12" sm="6" class="py-0">
                     <v-text-field
                       v-model="link.link"
-                      label="Link"
+                      :label="$t('components.form.link.fields.link.label')"
                       placeholder="https://github.com/mauriciohernancabrera"
                       filled
                     />
@@ -402,7 +412,7 @@
                       text
                       class="text-none font-weight-bold"
                       @click="deleteItem(form.links, link.id)"
-                    >Delete</v-btn>
+                    >{{ $t('components.form.link.deleteItem') }}</v-btn>
                     <v-spacer></v-spacer>
                   </v-col>
                 </v-row>
@@ -419,7 +429,8 @@
             class="d-flex justify-start text-none font-weight-bold"
             @click="addItem(form.links, DEFAULT_LINK)"
           >
-            <v-icon class="mr-2">mdi-plus</v-icon>Add link
+            <v-icon class="mr-2">mdi-plus</v-icon>
+            {{ $t('components.form.link.addItem') }}
           </v-btn>
         </v-col>
       </v-row>
@@ -429,7 +440,7 @@
     <v-col cols="12" class="px-0">
       <v-row>
         <v-col cols="12">
-          <h2 class="text-h6 font-weight-bold">Skills</h2>
+          <h2 class="text-h6 font-weight-bold">{{ $t('components.form.skill.title') }}</h2>
         </v-col>
       </v-row>
 
@@ -442,7 +453,7 @@
                   <v-col cols="12" class="py-0 mb-2">
                     <span
                       class="d-block font-weight-bold"
-                    >{{ skill.name? skill.name : '(Not specified)' }}</span>
+                    >{{ skill.name? skill.name : `(${$t('shared.notSpecified')})` }}</span>
                   </v-col>
                   <v-col cols="12" class="py-0">
                     <span
@@ -457,8 +468,8 @@
                   <v-col cols="12" sm="6" class="py-0">
                     <v-text-field
                       v-model="skill.name"
-                      label="Skill"
-                      placeholder="Javascript"
+                      :label="$t('components.form.skill.fields.name.label')"
+                      :placeholder="$t('components.form.skill.fields.name.placeholder')"
                       filled
                     />
                   </v-col>
@@ -469,8 +480,8 @@
                       :items="categories"
                       clearable
                       filled
-                      label="Category"
-                      placeholder="Frontend"
+                      :label="$t('components.form.skill.fields.category.label')"
+                      :placeholder="$t('components.form.skill.fields.category.placeholder')"
                     />
                   </v-col>
 
@@ -481,7 +492,7 @@
                       text
                       class="text-none font-weight-bold"
                       @click="deleteItem(form.skills, skill.id)"
-                    >Delete</v-btn>
+                    >{{ $t('components.form.skill.deleteItem') }}</v-btn>
                     <v-spacer></v-spacer>
                   </v-col>
                 </v-row>
@@ -498,7 +509,8 @@
             class="d-flex justify-start text-none font-weight-bold"
             @click="addItem(form.skills, DEFAULT_SKILL)"
           >
-            <v-icon class="mr-2">mdi-plus</v-icon>Add skill
+            <v-icon class="mr-2">mdi-plus</v-icon>
+            {{ $t('components.form.skill.addItem') }}
           </v-btn>
         </v-col>
       </v-row>
@@ -512,6 +524,7 @@ import { DEFAULT_LINK } from '@/const/link'
 import { DEFAULT_JOB } from '@/const/job'
 import { DEFAULT_EDUCATION } from '@/const/education'
 import { DEFAULT_SKILL } from '@/const/skill'
+import { monthYear } from '@/helpers/moment'
 
 export default {
   name: 'Form',
@@ -552,6 +565,10 @@ export default {
       const arrayIndex = findIndex(array, ['id', id])
       array.splice(arrayIndex, 1)
     },
+  },
+
+  filters: {
+    monthYear,
   },
 }
 </script>

@@ -26,7 +26,7 @@ const FAKE_PROFILE = {
     {
       id: '1',
       title: 'Core Developer',
-      url: 'https://bootstrap.com',
+      url: 'https://getbootstrap.com/',
       employer: 'Bootstrap',
       startDate: new Date('2016').toISOString().substr(0, 7),
       endDate: null,
@@ -172,7 +172,18 @@ const FAKE_PROFILE = {
       category: 'Operations',
     },
   ],
-  links: [],
+  links: [
+    {
+      id: '1',
+      label: 'https://github.com/bardiharborow',
+      link: 'https://github.com/bardiharborow',
+    },
+    {
+      id: '2',
+      label: 'https://www.linkedin.com/in/bardiharborow/',
+      link: 'https://www.linkedin.com/in/bardiharborow/',
+    },
+  ],
 }
 
 export { DEFAULT_PROFILE, FAKE_PROFILE }
